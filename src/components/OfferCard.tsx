@@ -1,4 +1,4 @@
-import { offers, isSet } from "@/content/offers";
+import { offers, isSet, introCallUrl } from "@/content/offers";
 import { copy } from "@/content/copy";
 import { bookingHref, mailto } from "@/lib/links";
 import Button from "./Button";
@@ -46,10 +46,38 @@ export default function OfferCard({ offerKey, body, cta }: { offerKey: Key; body
         {cta}
       </Button>
     );
-  } else {
-    const url = offerKey === "oneOnOne" ? offers.oneOnOne.bookingUrl : offers.business.bookingUrl;
+  } else if (offerKey === "oneOnOne") {
     action = (
-      <Button href={bookingHref(url)} variant="forest">
+      <div>
+        <ul className="divide-y divide-ink/10 border-y border-ink/10">
+          {offers.oneOnOne.options.map((opt) => (
+            <li key={opt.label} className="flex items-center justify-between gap-4 py-4">
+              <div>
+                <p className="font-body text-base font-medium text-ink">{opt.label}</p>
+                <p className="font-display text-2xl font-bold tabular-nums text-ink">${opt.priceUsd.toLocaleString("en-US")}</p>
+              </div>
+              <Button href={bookingHref(opt.bookingUrl)} variant="forest">
+                {c.bookOption}
+              </Button>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-5 font-body text-base text-offblack">
+          {c.introBefore}{" "}
+          <a
+            href={bookingHref(introCallUrl)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-forest underline underline-offset-4 hover:text-ink"
+          >
+            {c.introLink}
+          </a>
+        </p>
+      </div>
+    );
+  } else {
+    action = (
+      <Button href={bookingHref(offers.business.bookingUrl)} variant="forest">
         {cta}
       </Button>
     );

@@ -32,7 +32,7 @@ export const copy = {
     how: [
       "I don't do slides. We open your page and work on it. You film, we watch it back, and I tell you what I'd change and why. Then you post it.",
       "Everything I teach comes from doing it: formats, hooks, how brands actually pick people, what a brief looks like, what to charge. Not theory.",
-      "Before all this I spent ten years at PwC running training and change programs for large companies. I know how to make something stick for people who are busy and skeptical.",
+      "Before all this I spent ten years as Director of Learning and Development on client programs at PwC, running training and change programs for large companies. I know how to make something stick for people who are busy and skeptical.",
     ],
     aboutTeaser:
       "I'm Peter. I make comedy with my family as The Sing Family, I'm a SAG-AFTRA actor, and I've negotiated more brand contracts than I'd like to count. I live in Orange County, CA.",
@@ -65,7 +65,7 @@ export const copy = {
     offers: [
       {
         key: "oneOnOne" as const,
-        body: "One hour, you and me, on your page. We go through what you're posting, what's working, what isn't, and what to make next. If you're pitching brands or fielding offers, we go through pricing and the deal. Video call or in person in Orange County. Written recap after.",
+        body: "You and me, on your page. We go through what you're posting, what's working, what isn't, and what to make next. If you're pitching brands or fielding offers, we go through pricing and the deal. Video call or in person in Orange County. Written recap after.",
         cta: "Book a call",
       },
       {
@@ -82,6 +82,9 @@ export const copy = {
     closerBefore: "Not sure which one?",
     closerLink: "Email me",
     closerAfter: "and tell me what you're trying to do.",
+    bookOption: "Book",
+    introBefore: "Not sure yet?",
+    introLink: "Book a free 15\u2011minute intro call.", // non-breaking hyphen so "15-minute" never wraps
     nextDateLabel: "Next date",
     nextDateFallback: "Next date: join the list",
   },
@@ -105,7 +108,7 @@ export const copy = {
       },
       {
         title: "Team training",
-        body: "Half-day or full-day sessions for marketing teams on working with creators.",
+        body: "Half-day or full-day sessions for marketing teams on working with creators. I ran this kind of training for ten years as Director of Learning and Development on client programs at PwC.",
       },
     ],
     audienceHeading: "The audience",
@@ -119,12 +122,12 @@ export const copy = {
     heading: "About Peter",
     body: [
       "I'm Peter Sing. I run The Sing Family with my wife Elena, a comedy channel with about 2 million followers across TikTok, Instagram, and YouTube. Since 2019 we've done more than 150 paid campaigns for brands like Coca-Cola, Walmart, Amazon, McDonald's, Disney, Dove, Verizon, and Lexus. I write them, shoot them, negotiate them, and report on them.",
-      "Before that I spent ten years at PwC. My job there was teaching large companies how to use new systems and getting people to actually change how they worked. Turns out that's most of coaching.",
+      "Before that I spent ten years at PwC, where I directed Learning and Development on client programs for Fortune 500 companies: training, change management, and internal communications for big system rollouts. Turns out that's most of coaching.",
       "I'm a SAG-AFTRA member and a trained actor, which is where the on-camera stuff comes from.",
       "I coach because I keep getting the same questions from creators, actors, and friends with businesses, and I'd rather answer them properly than badly in a DM.",
     ],
     timeline: [
-      { when: "2014 to 2024", what: "PwC", detail: "Training and change programs for Fortune 500 clients" },
+      { when: "2014 to 2024", what: "PwC", detail: "Director of Learning and Development on client programs. Training, change management, and internal communications for Fortune 500 clients" },
       { when: "2019 to now", what: "The Sing Family", detail: "2M+ followers, 150+ brand deals" },
       { when: "Now", what: "Content Creator Coaching", detail: "1:1, workshops, and consulting for businesses" },
     ],

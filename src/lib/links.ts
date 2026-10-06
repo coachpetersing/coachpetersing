@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { offers, isSet } from "@/content/offers";
+import { introCallUrl, isSet } from "@/content/offers";
 
 export function mailto(subject?: string, body?: string) {
   const params = new URLSearchParams();
@@ -9,8 +9,8 @@ export function mailto(subject?: string, body?: string) {
   return `mailto:${site.email}${q ? `?${q}` : ""}`;
 }
 
-/** Cal.com link when set, otherwise an email with the right subject so the contact path still works. */
-export function bookingHref(url: string | null | undefined = offers.brands.bookingUrl) {
+/** Cal.com link when set, otherwise an email with the right subject so the contact path still works. Defaults to the free intro call. */
+export function bookingHref(url: string | null | undefined = introCallUrl) {
   return isSet(url) ? String(url) : mailto("Book a call");
 }
 

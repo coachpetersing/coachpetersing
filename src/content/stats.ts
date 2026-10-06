@@ -19,7 +19,7 @@ export const audience = {
 
 export const credibility = [
   "SAG-AFTRA member",
-  "10 years at PwC",
+  "Ten years as Director of Learning and Development on client programs at PwC",
   "Zero brand-safety incidents across 150+ campaigns",
   "12.1% like-to-view rate, about 3x the industry average",
 ];

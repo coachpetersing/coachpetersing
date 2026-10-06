@@ -1,8 +1,17 @@
+/** The free 15-minute intro call. Every "Book a call" button on the site goes here. */
+export const introCallUrl = "https://cal.com/coachpetersing/intro";
+
+export type SessionOption = { label: string; priceUsd: number; bookingUrl: string };
+
 export const offers = {
   oneOnOne: {
     name: "1:1 Coaching",
-    priceUsd: null as number | null,
-    bookingUrl: "TBD",
+    priceUsd: null as number | null, // per-session prices live in `options`
+    bookingUrl: "https://cal.com/coachpetersing/60min",
+    options: [
+      { label: "30 minutes", priceUsd: 150, bookingUrl: "https://cal.com/coachpetersing/30min" },
+      { label: "60 minutes", priceUsd: 250, bookingUrl: "https://cal.com/coachpetersing/60min" },
+    ] as SessionOption[],
   },
   workshop: {
     name: "Workshops",
@@ -14,11 +23,11 @@ export const offers = {
   business: {
     name: "Social for your business",
     priceUsd: null as number | null,
-    bookingUrl: "TBD",
+    bookingUrl: introCallUrl,
   },
   brands: {
     mediaKitEmail: "contact@coachpetersing.com",
-    bookingUrl: "TBD",
+    bookingUrl: introCallUrl,
   },
 };
 

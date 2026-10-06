@@ -21,6 +21,6 @@ export const faq = [
   },
   {
     q: "What do you charge?",
-    a: "Depends on what you need. Book a call and I'll tell you straight.",
+    a: "1:1 sessions are $150 for 30 minutes or $250 for an hour. If you're not sure, start with a free 15-minute intro call.",
   },
 ];
