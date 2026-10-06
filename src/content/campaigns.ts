@@ -10,6 +10,8 @@ export type Campaign = {
   poster: string; // local "/images/x.jpg" or "TBD" (TikTok posters are fetched automatically, see scripts/fetch-posters.mjs)
   url: string; // live post url or "TBD"
   featured: boolean;
+  /** true hides the card on the home page and Work page. The data stays so it can come back once a working link exists. */
+  hidden?: boolean;
 };
 
 // Filter chips on /work. Must match the category strings below and in brands.ts.
@@ -37,6 +39,7 @@ export const campaigns: Campaign[] = [
     poster: "/images/dove-mens.jpg",
     url: "https://www.tiktok.com/@thesingfamily/video/7325545956689055018",
     featured: true,
+    hidden: true,
   },
   {
     brand: "Coca-Cola",
@@ -75,6 +78,7 @@ export const campaigns: Campaign[] = [
     poster: "TBD",
     url: "TBD",
     featured: true,
+    hidden: true,
   },
   {
     brand: "Disney",
@@ -221,6 +225,7 @@ export const campaigns: Campaign[] = [
     poster: "TBD",
     url: "https://www.instagram.com/reel/DBJ3Gf1SOgO/",
     featured: false,
+    hidden: true,
   },
   {
     brand: "Lysol",
@@ -280,6 +285,7 @@ export const campaigns: Campaign[] = [
     poster: "TBD",
     url: "TBD",
     featured: false,
+    hidden: true,
   },
   {
     brand: "Zevo",
@@ -291,10 +297,29 @@ export const campaigns: Campaign[] = [
     poster: "TBD",
     url: "TBD",
     featured: false,
+    hidden: true,
   },
 ];
 
-export const featuredCampaigns = campaigns.filter((c) => c.featured);
+/** Parses the headline result into a number for ranking, for example "23.3M TikTok views" -> 23300000. */
+export function headlineViews(c: Campaign): number {
+  const m = c.result.match(/([\d.]+)\s*([KMB])?/i);
+  if (!m) return 0;
+  const mult = { K: 1e3, M: 1e6, B: 1e9 }[(m[2] || "").toUpperCase() as "K" | "M" | "B"] ?? 1;
+  return parseFloat(m[1]) * mult;
+}
+
+export const visibleCampaigns = campaigns.filter((c) => !c.hidden);
+
+/**
+ * Home page picks: visible featured campaigns in the order above. If fewer than four survive,
+ * the highest-view visible campaigns fill the rest.
+ */
+export const featuredCampaigns: Campaign[] = (() => {
+  const picks = visibleCampaigns.filter((c) => c.featured);
+  const rest = visibleCampaigns.filter((c) => !c.featured).sort((a, b) => headlineViews(b) - headlineViews(a));
+  return [...picks, ...rest].slice(0, Math.max(4, picks.length));
+})();
 
 export const repeatPartners = [
   { brand: "Walmart", note: "10+ campaigns, 2022 to 2025" },

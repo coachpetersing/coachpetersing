@@ -43,6 +43,8 @@ Open [`src/content/campaigns.ts`](src/content/campaigns.ts) and add an object to
 
 Anything set to `"TBD"` is hidden or replaced with a styled color tile. Nothing breaks.
 
+To take a campaign off the site without losing its data, add `hidden: true`. It disappears from the Work grid and the home page, and the brand stays in the marquee and the brand wall. Remove the flag once a working link exists. The home page shows the `featured` campaigns that aren't hidden, and if fewer than four are left it fills the rest with the highest-view visible campaigns.
+
 Repeat partners for the "Brands that came back" block are in the same file under `repeatPartners`.
 
 ## Post embeds and posters
@@ -75,6 +77,10 @@ Put the photo in `public/images/headshot.jpg` (at least 2000 px wide) and set `h
 ## Add brands
 
 [`src/content/brands.ts`](src/content/brands.ts), grouped by category. Add the name to the right group. Text wordmarks only. Do not pull logos from the internet.
+
+The `tier1` list in the same file sets the biggest names, in order. They make up the first row of the home marquee and lead the Work page wall. Everything else follows, grouped by category. A brand in `tier1` must also be in a category group.
+
+`npm run build` runs a content check first. It fails if a campaign brand is missing from `brands.ts`, if a `tier1` brand isn't in a group, or if an em dash shows up in `src/content`. Run it alone with `npm run check`.
 
 ## Swap a link
 

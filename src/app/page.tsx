@@ -17,7 +17,7 @@ import Section, { Heading } from "@/components/Section";
 
 export default function Home() {
   const c = copy.home;
-  const featured = resolveMedia(featuredCampaigns).slice(0, 4);
+  const featured = resolveMedia(featuredCampaigns);
   return (
     <>
       <Hero />

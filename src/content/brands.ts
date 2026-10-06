@@ -35,3 +35,17 @@ export const brandGroups: BrandGroup[] = [
 ];
 
 export const allBrands = brandGroups.flatMap((g) => g.brands);
+
+/** The biggest names, in this order. They lead the home marquee and the Work page wall. */
+export const tier1 = [
+  "Coca-Cola", "McDonald's", "Disney", "Walmart", "Amazon", "Target", "Costco", "Dove",
+  "Verizon", "Lexus", "American Express", "Adidas", "Lego", "Paramount", "Progressive",
+  "Tide", "Pampers", "CVS", "DoorDash", "IHG",
+];
+
+/** Every brand not in tier1, still grouped by category. Empty groups are dropped. */
+export const restGroups: BrandGroup[] = brandGroups
+  .map((g) => ({ ...g, brands: g.brands.filter((b) => !tier1.includes(b)) }))
+  .filter((g) => g.brands.length > 0);
+
+export const restBrands = restGroups.flatMap((g) => g.brands);

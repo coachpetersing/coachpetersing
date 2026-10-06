@@ -47,6 +47,7 @@ export const copy = {
     intro: "A few of the 150+ campaigns, with the numbers. Every one of these I wrote, shot, negotiated, and reported on.",
     repeatHeading: "Brands that came back",
     wallHeading: "All of them",
+    tier1Heading: "The biggest names",
     ctaHeading: "Want this for your brand?",
     ctaBody: "I take on a small number of partnerships a year. Tell me what you're launching.",
     ctaButton: "For brands and agencies",

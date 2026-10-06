@@ -1,4 +1,4 @@
-import { allBrands } from "@/content/brands";
+import { tier1, restBrands } from "@/content/brands";
 
 function Row({ brands, reverse }: { brands: string[]; reverse?: boolean }) {
   const Track = ({ hidden }: { hidden?: boolean }) => (
@@ -22,6 +22,8 @@ function Row({ brands, reverse }: { brands: string[]; reverse?: boolean }) {
     <div className="overflow-hidden">
       <div
         className={`flex w-max ${reverse ? "animate-marquee-reverse" : "animate-marquee"} motion-reduce:w-full motion-reduce:animate-none`}
+        // Scale duration with length so both rows drift at the same speed.
+        style={{ animationDuration: `${brands.length * 3}s` }}
       >
         <Track />
         <Track hidden />
@@ -30,18 +32,16 @@ function Row({ brands, reverse }: { brands: string[]; reverse?: boolean }) {
   );
 }
 
+/** Row one is the tier1 list in order. Row two is every other brand, in category order. */
 export default function BrandMarquee({ heading }: { heading: string }) {
-  const half = Math.ceil(allBrands.length / 2);
-  const rowA = allBrands.slice(0, half);
-  const rowB = allBrands.slice(half);
   return (
     <section className="bg-ink py-16 text-white md:py-24" aria-label={heading}>
       <h2 className="mx-auto mb-10 w-full max-w-site px-5 font-body text-sm font-medium uppercase tracking-[0.18em] text-tan md:px-8">
         {heading}
       </h2>
       <div className="space-y-6 md:space-y-8">
-        <Row brands={rowA} />
-        <Row brands={rowB} reverse />
+        <Row brands={tier1} />
+        <Row brands={restBrands} reverse />
       </div>
     </section>
   );

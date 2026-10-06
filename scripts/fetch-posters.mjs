@@ -22,7 +22,7 @@ const UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 // Keep posters small. sips ships with macOS; elsewhere the file is kept as downloaded.
 function shrink(file) {
   try {
-    execFileSync("sips", ["--resampleWidth", "640", "-s", "format", "jpeg", "-s", "formatOptions", "72", file, "--out", file], { stdio: "ignore" });
+    execFileSync("sips", ["--resampleWidth", "540", "-s", "format", "jpeg", "-s", "formatOptions", "low", file, "--out", file], { stdio: "ignore" });
   } catch {}
 }
 

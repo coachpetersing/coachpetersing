@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { copy } from "@/content/copy";
-import { campaigns, repeatPartners } from "@/content/campaigns";
+import { visibleCampaigns, repeatPartners } from "@/content/campaigns";
 import { resolveMedia } from "@/lib/media";
 import { pageMeta, descriptions } from "@/lib/seo";
 import Section, { Heading, Eyebrow } from "@/components/Section";
@@ -23,7 +23,7 @@ export default function WorkPage() {
 
       <Section>
         <h2 className="sr-only">Campaigns</h2>
-        <WorkGrid campaigns={resolveMedia(campaigns)} />
+        <WorkGrid campaigns={resolveMedia(visibleCampaigns)} />
         <div className="mt-16 flex justify-center">
           <Button href={c.watchMoreUrl} variant="outline-dark" size="lg">
             {c.watchMore}
