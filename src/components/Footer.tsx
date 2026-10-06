@@ -5,7 +5,7 @@ import { bookingHref } from "@/lib/links";
 
 export default function Footer() {
   return (
-    <footer className="bg-ink pb-24 pt-16 text-white md:pb-16">
+    <footer className="bg-ink pb-24 pt-16 text-white lg:pb-16">
       <div className="mx-auto grid w-full max-w-site gap-12 px-5 md:grid-cols-12 md:px-8">
         <div className="md:col-span-5">
           <p className="font-display text-2xl font-extrabold tracking-tight">{site.name}</p>

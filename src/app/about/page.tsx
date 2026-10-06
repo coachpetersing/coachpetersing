@@ -18,11 +18,6 @@ export default function AboutPage() {
             <Eyebrow>{c.title}</Eyebrow>
             <h1 className="font-display text-5xl font-extrabold tracking-tight md:text-8xl">{c.heading}</h1>
           </div>
-          {site.headshot && (
-            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl md:col-span-4 md:col-start-9">
-              <Image src={site.headshot} alt="Peter Sing" fill priority sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
-            </div>
-          )}
         </div>
       </Section>
 
@@ -38,6 +33,18 @@ export default function AboutPage() {
           </div>
 
           <aside className="md:col-span-4 md:col-start-9">
+            {site.headshot && (
+              <div className="relative mb-12 aspect-[4/5] overflow-hidden rounded-3xl bg-cream">
+                <Image
+                  src={site.headshot}
+                  alt="Peter Sing"
+                  fill
+                  priority
+                  sizes="(min-width: 1200px) 380px, (min-width: 768px) 33vw, 100vw"
+                  className="object-cover object-[72%_35%]"
+                />
+              </div>
+            )}
             <ol className="space-y-8 border-l-2 border-tan pl-6">
               {c.timeline.map((t) => (
                 <li key={t.what}>

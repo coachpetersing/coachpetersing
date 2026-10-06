@@ -1,6 +1,6 @@
 # coachpetersing.com
 
-Personal brand site for Peter Sing. Next.js 15 (App Router), TypeScript, Tailwind, Framer Motion. Static export, hosted on Vercel. No database, no CMS. Every word and number lives in `src/content/`.
+Personal brand site for Peter Sing. Next.js 15 (App Router), TypeScript, Tailwind. Hosted on Vercel; every page prerenders to static HTML, and Vercel serves `next/image` in AVIF and WebP. No database, no CMS. Every word and number lives in `src/content/`.
 
 ## Run it
 
@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. `npm run build` writes the static site to `out/`.
+Open http://localhost:3000. To check the production build locally, run `npm run build` then `npm start`.
 
 ## Edit copy
 
@@ -72,7 +72,7 @@ Videos are muted, lazy-loaded, and play on hover (desktop) or tap (mobile). They
 
 ## Add the headshot
 
-Put the photo in `public/images/headshot.jpg` (at least 2000 px wide) and set `headshot: "/images/headshot.jpg"` in `site.ts`. A second candid goes in `secondPhoto` and shows on the home page about teaser. Until then the hero uses a dark panel and the layout holds.
+The headshot is `public/images/peter-headshot.jpg`, set as `headshot` in `site.ts`. On large screens it fills the hero, anchored right, with a cream gradient on the left; below 1024 px it sits above the text, framed on the face. The About page uses the same file cropped to 4:5. To swap it, replace the file with one framed the same way: plain light background, face in the right third, at least 2000 px wide. The link preview image uses a separate crop at `src/app/og-headshot.jpg` (600 x 630); regenerate it if the photo changes. A second candid goes in `secondPhoto` and shows on the home page about teaser.
 
 ## Add brands
 

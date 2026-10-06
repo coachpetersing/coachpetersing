@@ -11,7 +11,7 @@ export default function Nav() {
           {site.name}
         </Link>
 
-        <ul className="hidden items-center gap-7 font-body text-base md:flex">
+        <ul className="hidden items-center gap-7 font-body text-base lg:flex">
           {nav.map((item) => (
             <li key={item.href}>
               <Link href={item.href} className="text-white/80 transition-colors hover:text-tan">

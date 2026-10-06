@@ -16,7 +16,7 @@ export const site = {
     { name: "YouTube", url: "https://www.youtube.com/@thesingfamily", followers: "131K" },
   ],
   // Peter supplies these. Set to null until the files exist in /public/images.
-  headshot: null as string | null, // e.g. "/images/headshot.jpg"
+  headshot: "/images/peter-headshot.jpg" as string | null,
   secondPhoto: null as string | null, // e.g. "/images/peter-candid.jpg"
   colors: {
     ink: "#0E1A12",

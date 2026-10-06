@@ -10,7 +10,7 @@ export default function MobileMenu() {
   const ref = useRef<HTMLDetailsElement>(null);
   const close = () => ref.current?.removeAttribute("open");
   return (
-    <details ref={ref} className="relative md:hidden">
+    <details ref={ref} className="relative lg:hidden">
       <summary className="cursor-pointer list-none rounded-full border border-white/40 px-4 py-2 font-body text-base [&::-webkit-details-marker]:hidden">
         {copy.nav.menu}
       </summary>
