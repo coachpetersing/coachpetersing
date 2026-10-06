@@ -24,6 +24,10 @@ const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) =
 for (const f of walk("src")) {
   if (socialRe.test(fs.readFileSync(f, "utf8"))) problems.push(`@coachpetersing social link found in ${f}`);
 }
+// Peter was Director of L&D at PwC, not for all ten years. Never write it that way.
+for (const f of walk("src")) {
+  if (/years as Director/i.test(fs.readFileSync(f, "utf8"))) problems.push(`"years as Director" found in ${f}`);
+}
 for (const f of fs.readdirSync("src/content")) {
   if (fs.readFileSync(`src/content/${f}`, "utf8").includes("—")) problems.push(`em dash found in src/content/${f}`);
 }
