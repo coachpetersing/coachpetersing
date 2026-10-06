@@ -2,7 +2,6 @@ import Image from "next/image";
 import { site } from "@/content/site";
 import { copy } from "@/content/copy";
 import Button from "./Button";
-import SocialLinks from "./SocialLinks";
 import HeroText from "./HeroText";
 
 export default function Hero() {
@@ -30,25 +29,20 @@ export default function Hero() {
             background:
               "radial-gradient(120% 90% at 85% 20%, #1F3D2B 0%, #0E1A12 70%)",
           }}
-        >
-          <p className="absolute bottom-10 right-8 select-none font-display text-[13vw] font-extrabold leading-none text-white/[0.04]">
-            {site.handle}
-          </p>
-        </div>
+        />
       )}
 
       <div className="relative mx-auto grid min-h-[88svh] w-full max-w-site items-end px-5 pb-16 pt-20 md:min-h-[86vh] md:grid-cols-12 md:items-center md:px-8 md:pb-24 md:pt-24">
         <div className="md:col-span-7">
           <HeroText headline={c.headline} sub={c.sub} />
           <div className="mt-9 flex flex-wrap gap-3">
-            <Button href="/contact" size="lg">
+            <Button href={site.workWithMeUrl} size="lg">
               {c.primaryCta}
             </Button>
             <Button href="/work" variant="outline-light" size="lg">
               {c.secondaryCta}
             </Button>
           </div>
-          <SocialLinks className="mt-8" />
         </div>
       </div>
     </section>

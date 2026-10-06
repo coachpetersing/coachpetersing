@@ -18,7 +18,6 @@ export const offers = {
     nextDate: "TBD",
     location: "Orange County, CA and online",
     priceUsd: null as number | null,
-    waitlistFormAction: "TBD",
   },
   business: {
     name: "Social for your business",

@@ -71,7 +71,7 @@ export const copy = {
       {
         key: "workshop" as const,
         body: "Small groups, in person in Orange County or online. We film in the room, watch it back, and fix it together. Every session stands alone.",
-        cta: "Join the list",
+        cta: "Ask about workshops",
       },
       {
         key: "business" as const,
@@ -86,7 +86,6 @@ export const copy = {
     introBefore: "Not sure yet?",
     introLink: "Book a free 15\u2011minute intro call.", // non-breaking hyphen so "15-minute" never wraps
     nextDateLabel: "Next date",
-    nextDateFallback: "Next date: join the list",
   },
   brands: {
     title: "Brands",
@@ -152,6 +151,11 @@ export const copy = {
     roles: ["Creator or actor", "Business owner", "Brand or agency", "Press or event", "Other"],
     noForm: "The form is on its way. Email me in the meantime and I'll reply within two days.",
     handlesHeading: "Or DM me",
+    dmLink: "@thesingfamily on Instagram",
+    sending: "Sending",
+    success: "Got it. I'll reply within two days.",
+    errorBefore: "Something went wrong. Email me at",
+    pickOne: "Pick one",
   },
   thanks: {
     title: "Thanks",
@@ -165,9 +169,9 @@ export const copy = {
     updated: "Updated October 2026",
     body: [
       "This site is run by Peter Sing in Orange County, CA. Here is what it collects and what it does with it.",
-      "If you fill in the contact form, Formspree sends me your name, email, and message. I use it to reply to you. I don't add you to a list or share it with anyone.",
-      "If you book a call, that happens on Cal.com. Their privacy policy covers what they collect.",
-      "The site uses Vercel Web Analytics to count visits. It doesn't use cookies and it doesn't identify you.",
+      "Forms are handled by Formspree. If you fill in the contact form, Formspree sends me your name, email, what you do, and your message. I use it to reply to you. I don't add you to a list or share it with anyone.",
+      "Bookings and payments are handled by Cal.com. When you book a session, Cal.com takes your details and Cal Pay processes the payment. I never see or store your card number. Their privacy policy covers what they collect.",
+      "Analytics are handled by Vercel Web Analytics. It counts visits anonymously, sets no cookies, and doesn't identify you or follow you across other sites.",
       "If I turn on a Meta or TikTok pixel to measure ads, it can set a cookie in your browser. You can block it with your browser settings or an ad blocker and the site will still work.",
       "There is no newsletter, no account, and nothing stored about you beyond what's above.",
       "Questions, or want something deleted? Email contact@coachpetersing.com.",
@@ -188,6 +192,5 @@ export const copy = {
     bookCall: "Book a call",
     emailMe: "Email me",
     dm: "DM me",
-    joinList: "Join the list",
   },
 };

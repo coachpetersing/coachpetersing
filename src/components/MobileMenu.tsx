@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { nav } from "@/content/site";
+import { nav, site } from "@/content/site";
 import { copy } from "@/content/copy";
 
 /** A details element so the menu works with JavaScript off. With JS it closes after a tap. */
@@ -23,9 +23,9 @@ export default function MobileMenu() {
           </li>
         ))}
         <li>
-          <Link href="/contact" onClick={close} className="mt-2 block rounded-xl bg-tan px-4 py-3 text-center font-body text-lg font-medium text-ink">
+          <a href={site.workWithMeUrl} target="_blank" rel="noopener noreferrer" onClick={close} className="mt-2 block rounded-xl bg-tan px-4 py-3 text-center font-body text-lg font-medium text-ink">
             {copy.nav.cta}
-          </Link>
+          </a>
         </li>
       </ul>
     </details>

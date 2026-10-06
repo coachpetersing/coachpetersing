@@ -20,6 +20,7 @@ export default function CoachingPage() {
       </Section>
 
       <Section>
+        <h2 className="sr-only">{c.intro}</h2>
         <div className="grid gap-6 lg:grid-cols-3">
           {c.offers.map((o) => (
             <OfferCard key={o.key} offerKey={o.key} body={o.body} cta={o.cta} />

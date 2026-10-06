@@ -91,7 +91,7 @@ export const campaigns: Campaign[] = [
     media: "TBD",
     poster: "TBD",
     url: "https://www.tiktok.com/@thesingfamily/video/7341417290275032362",
-    featured: true,
+    featured: false,
   },
   {
     brand: "Annie's",
@@ -116,7 +116,7 @@ export const campaigns: Campaign[] = [
     media: "TBD",
     poster: "TBD",
     url: "https://www.tiktok.com/@thesingfamily/video/7291452248532454698",
-    featured: false,
+    featured: true,
   },
   {
     brand: "Puffs",

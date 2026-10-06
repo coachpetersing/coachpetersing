@@ -1,6 +1,6 @@
 import { offers, isSet, introCallUrl } from "@/content/offers";
 import { copy } from "@/content/copy";
-import { bookingHref, mailto } from "@/lib/links";
+import { bookingHref } from "@/lib/links";
 import Button from "./Button";
 
 type Key = "oneOnOne" | "workshop" | "business";
@@ -19,30 +19,9 @@ export default function OfferCard({ offerKey, body, cta }: { offerKey: Key; body
 
   if (offerKey === "workshop") {
     const w = offers.workshop;
-    meta = isSet(w.nextDate) ? `${c.nextDateLabel}: ${w.nextDate}` : c.nextDateFallback;
-    action = isSet(w.waitlistFormAction) ? (
-      <form action={String(w.waitlistFormAction)} method="POST" className="flex w-full flex-col gap-3 sm:flex-row">
-        <label className="sr-only" htmlFor={`waitlist-${offerKey}`}>
-          Email
-        </label>
-        <input
-          id={`waitlist-${offerKey}`}
-          type="email"
-          name="email"
-          required
-          placeholder="you@example.com"
-          className="w-full rounded-full border border-ink/20 bg-white px-5 py-3 font-body text-base text-offblack outline-none focus:border-forest"
-        />
-        <input type="hidden" name="_subject" value="Workshop list" />
-        <button
-          type="submit"
-          className="rounded-full bg-forest px-6 py-3 font-body font-medium text-white transition-colors hover:bg-[#2a5239]"
-        >
-          {cta}
-        </button>
-      </form>
-    ) : (
-      <Button href={mailto("Workshop list", "Add me to the workshop list.")} variant="forest">
+    meta = isSet(w.nextDate) ? `${c.nextDateLabel}: ${w.nextDate}` : null;
+    action = (
+      <Button href="/contact" variant="forest">
         {cta}
       </Button>
     );

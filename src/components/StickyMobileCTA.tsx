@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { copy } from "@/content/copy";
+import { site } from "@/content/site";
 
 export default function StickyMobileCTA() {
   const [show, setShow] = useState(false);
@@ -28,12 +28,14 @@ export default function StickyMobileCTA() {
         show ? "translate-y-0" : "translate-y-full"
       }`}
     >
-      <Link
-        href="/contact"
+      <a
+        href={site.workWithMeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex w-full items-center justify-center rounded-full bg-tan px-6 py-4 font-body text-lg font-medium text-ink shadow-xl"
       >
         {copy.nav.cta}
-      </Link>
+      </a>
     </div>
   );
 }

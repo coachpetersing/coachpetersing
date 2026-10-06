@@ -3,7 +3,6 @@ import Link from "next/link";
 import { copy } from "@/content/copy";
 import { pageMeta, descriptions } from "@/lib/seo";
 import Section from "@/components/Section";
-import SocialLinks from "@/components/SocialLinks";
 
 export const metadata: Metadata = { ...pageMeta(copy.thanks.title, descriptions.thanks, "/thanks"), robots: { index: false } };
 
@@ -16,7 +15,6 @@ export default function ThanksPage() {
       <Link href="/" className="mt-10 inline-block font-body text-lg font-medium text-forest underline underline-offset-4 hover:text-ink">
         {c.back}
       </Link>
-      <SocialLinks dark={false} className="mt-14" />
     </Section>
   );
 }

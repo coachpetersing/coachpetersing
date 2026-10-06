@@ -2,7 +2,6 @@ import Link from "next/link";
 import { nav, site } from "@/content/site";
 import { copy } from "@/content/copy";
 import { bookingHref } from "@/lib/links";
-import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
   return (
@@ -11,7 +10,6 @@ export default function Footer() {
         <div className="md:col-span-5">
           <p className="font-display text-2xl font-extrabold tracking-tight">{site.name}</p>
           <p className="mt-3 max-w-sm font-body text-base text-white/70">{copy.footer.tagline}</p>
-          <SocialLinks className="mt-6" />
         </div>
 
         <div className="md:col-span-2">

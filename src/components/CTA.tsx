@@ -36,7 +36,7 @@ export default function CTA({
               <Button href={bookingHref()} variant="outline-light" size="lg">
                 {copy.common.bookCall}
               </Button>
-              <Button href={site.social.instagram} variant="outline-light" size="lg">
+              <Button href={site.dmUrl} variant="outline-light" size="lg">
                 {copy.common.dm}
               </Button>
             </>

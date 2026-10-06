@@ -18,6 +18,12 @@ const campaignBrands = [...campaignBlock.matchAll(/brand: "([^"]+)"/g)].flatMap(
 const problems = [];
 for (const b of new Set(campaignBrands)) if (!inGroups.has(b)) problems.push(`campaigns.ts brand "${b}" is missing from brands.ts`);
 for (const b of tier1) if (!inGroups.has(b)) problems.push(`tier1 brand "${b}" is not in any category group`);
+// The @coachpetersing social accounts are not linked anywhere. The domain, email, and Cal.com stay.
+const socialRe = /(instagram\.com|tiktok\.com\/@|youtube\.com\/@)coachpetersing/i;
+const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => (d.isDirectory() ? walk(`${dir}/${d.name}`) : [`${dir}/${d.name}`]));
+for (const f of walk("src")) {
+  if (socialRe.test(fs.readFileSync(f, "utf8"))) problems.push(`@coachpetersing social link found in ${f}`);
+}
 for (const f of fs.readdirSync("src/content")) {
   if (fs.readFileSync(`src/content/${f}`, "utf8").includes("—")) problems.push(`em dash found in src/content/${f}`);
 }

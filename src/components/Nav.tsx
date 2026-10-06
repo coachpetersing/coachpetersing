@@ -20,12 +20,14 @@ export default function Nav() {
             </li>
           ))}
           <li>
-            <Link
-              href="/contact"
+            <a
+              href={site.workWithMeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full bg-tan px-5 py-2.5 font-medium text-ink transition-colors hover:bg-[#d9bb82]"
             >
               {copy.nav.cta}
-            </Link>
+            </a>
           </li>
         </ul>
 
