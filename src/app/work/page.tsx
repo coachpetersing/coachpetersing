@@ -7,6 +7,7 @@ import Section, { Heading, Eyebrow } from "@/components/Section";
 import WorkGrid from "@/components/WorkGrid";
 import BrandWall from "@/components/BrandWall";
 import CTA from "@/components/CTA";
+import Button from "@/components/Button";
 
 export const metadata: Metadata = pageMeta(copy.work.title, descriptions.work, "/work");
 
@@ -23,6 +24,11 @@ export default function WorkPage() {
       <Section>
         <h2 className="sr-only">Campaigns</h2>
         <WorkGrid campaigns={resolveMedia(campaigns)} />
+        <div className="mt-16 flex justify-center">
+          <Button href={c.watchMoreUrl} variant="outline-dark" size="lg">
+            {c.watchMore}
+          </Button>
+        </div>
       </Section>
 
       <Section dark>

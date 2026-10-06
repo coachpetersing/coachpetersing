@@ -17,7 +17,7 @@ import Section, { Heading } from "@/components/Section";
 
 export default function Home() {
   const c = copy.home;
-  const featured = resolveMedia(featuredCampaigns);
+  const featured = resolveMedia(featuredCampaigns).slice(0, 4);
   return (
     <>
       <Hero />
@@ -34,7 +34,7 @@ export default function Home() {
         </div>
         <div className="mt-12 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((cp, i) => (
-            <Reveal key={cp.name} delay={i * 0.06}>
+            <Reveal key={`${cp.url}-${cp.name}`} delay={i * 0.06}>
               <CampaignCard c={cp} compact />
             </Reveal>
           ))}

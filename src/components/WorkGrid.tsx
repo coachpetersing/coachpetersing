@@ -31,8 +31,8 @@ export default function WorkGrid({ campaigns }: { campaigns: Campaign[] }) {
         })}
       </div>
       <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-        {list.map((c) => (
-          <CampaignCard key={c.name} c={c} showRole viewPostLabel={copy.work.viewPost} />
+        {list.map((c, i) => (
+          <CampaignCard key={`${c.url}-${c.name}`} c={c} showRole eager={i < 3} viewPostLabel={copy.work.viewPost} />
         ))}
       </div>
     </div>

@@ -20,7 +20,7 @@ export const descriptions = {
   work: "Featured campaigns from 150+ brand deals: Dove Men+Care, Coca-Cola, Wonka x IHOP, Baby Dove, Disney, and more, with the numbers and the brands that came back.",
   coaching: "1:1 coaching, small-group workshops in Orange County and online, and a simple social system for business owners and professionals. Taught by a creator who has done it 150 times.",
   brands: "Hire Peter Sing for creator partnerships on The Sing Family, creative consulting, speaking, and team training. 2M+ followers, 1B+ views, zero brand-safety incidents.",
-  about: "Peter Sing runs The Sing Family with his wife Elena, spent ten years at PwC, and is a SAG-AFTRA actor. He coaches creators, actors, and business owners from Lake Forest, California.",
+  about: "Peter Sing runs The Sing Family with his wife Elena, spent ten years at PwC, and is a SAG-AFTRA actor. He coaches creators, actors, and business owners from Orange County, CA.",
   contact: "Email Peter Sing, book a call, or send a note. He replies within two days.",
   thanks: "Your message is in. Peter replies within two days.",
   privacy: "What coachpetersing.com collects and what it does with it, in plain English.",

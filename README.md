@@ -45,6 +45,20 @@ Anything set to `"TBD"` is hidden or replaced with a styled color tile. Nothing 
 
 Repeat partners for the "Brands that came back" block are in the same file under `repeatPartners`.
 
+## Post embeds and posters
+
+Every campaign with a TikTok or Instagram `url` shows a poster with a play button. Clicking loads the platform's official embed inline, muted, nothing loads before the click. The card also links to the live post in a new tab.
+
+TikTok posters are fetched automatically from TikTok's oEmbed endpoint by `scripts/fetch-posters.mjs`, which runs before every build and saves to `public/posters/`. Already-fetched posters are kept, so a flaky network never breaks a build. To re-download them all:
+
+```bash
+npm run posters -- --refresh
+```
+
+Instagram has no public thumbnail endpoint, so Instagram cards show a color tile with the brand name until you add a `poster` image yourself. If an embed fails or stalls, the card shows an "Open on TikTok" or "Open on Instagram" button and the outbound link stays.
+
+The source for campaign numbers and links is the Brand Deal Stats table in Notion (Projects > Brand Deal Stats). Years are derived from the post id.
+
 ## Add a video
 
 1. Export the MP4 from the original post. H.264, 9:16 or 1:1, under 4 MB. HandBrake with the "Fast 1080p30" preset and a lower quality slider gets there. Trim to the first 10 to 15 seconds if needed.

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "npx serve out",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "posters": "node scripts/fetch-posters.mjs",
+    "prebuild": "node scripts/fetch-posters.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",

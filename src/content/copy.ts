@@ -35,7 +35,7 @@ export const copy = {
       "Before all this I spent ten years at PwC running training and change programs for large companies. I know how to make something stick for people who are busy and skeptical.",
     ],
     aboutTeaser:
-      "I'm Peter. I make comedy with my family as The Sing Family, I'm a SAG-AFTRA actor, and I've negotiated more brand contracts than I'd like to count. I live in Lake Forest, California.",
+      "I'm Peter. I make comedy with my family as The Sing Family, I'm a SAG-AFTRA actor, and I've negotiated more brand contracts than I'd like to count. I live in Orange County, CA.",
     aboutLink: "More about me",
     faqHeading: "Questions",
     ctaHeading: "Let's talk",
@@ -51,6 +51,10 @@ export const copy = {
     ctaBody: "I take on a small number of partnerships a year. Tell me what you're launching.",
     ctaButton: "For brands and agencies",
     viewPost: "See the post",
+    watchMore: "Watch more",
+    watchMoreUrl: "https://www.tiktok.com/@thesingfamily",
+    play: "Play",
+    openOn: "Open on",
     allChip: "All",
   },
   coaching: {
@@ -156,7 +160,7 @@ export const copy = {
     heading: "Privacy",
     updated: "Updated October 2026",
     body: [
-      "This site is run by Peter Sing in Lake Forest, California. Here is what it collects and what it does with it.",
+      "This site is run by Peter Sing in Orange County, CA. Here is what it collects and what it does with it.",
       "If you fill in the contact form, Formspree sends me your name, email, and message. I use it to reply to you. I don't add you to a list or share it with anyone.",
       "If you book a call, that happens on Cal.com. Their privacy policy covers what they collect.",
       "The site uses Vercel Web Analytics to count visits. It doesn't use cookies and it doesn't identify you.",

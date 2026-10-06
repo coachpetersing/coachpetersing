@@ -4,7 +4,7 @@ export const site = {
   business: "Content Creator Coaching",
   url: "https://coachpetersing.com",
   email: "contact@coachpetersing.com",
-  location: "Lake Forest, California",
+  location: "Orange County, CA",
   handle: "@coachpetersing",
   familyHandle: "@thesingfamily",
   social: {

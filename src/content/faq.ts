@@ -13,7 +13,7 @@ export const faq = [
   },
   {
     q: "Where are you?",
-    a: "Lake Forest, California. In person across Orange County, online anywhere.",
+    a: "Orange County, CA. In person across Orange County, online anywhere.",
   },
   {
     q: "How is this different from a course?",

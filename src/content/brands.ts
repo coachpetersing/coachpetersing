@@ -3,7 +3,7 @@ export type BrandGroup = { category: string; brands: string[] };
 export const brandGroups: BrandGroup[] = [
   {
     category: "Food and drink",
-    brands: ["Coca-Cola", "McDonald's", "IHOP", "Oreo", "Heinz", "Annie's", "Lactaid"],
+    brands: ["Coca-Cola", "McDonald's", "IHOP", "Oreo", "Heinz", "Annie's", "Lactaid", "Yellow Tail", "Habit", "Blue Bunny"],
   },
   {
     category: "Retail and delivery",
@@ -17,7 +17,7 @@ export const brandGroups: BrandGroup[] = [
     brands: [
       "Dove", "Dove Men+Care", "Baby Dove", "Tide", "Charmin", "Pampers", "Swiffer",
       "Bounty", "Luvs", "Puffs", "Clorox", "CeraVe", "Tylenol", "Allegra", "Energizer",
-      "Shark Ninja", "Huggies",
+      "Shark Ninja", "Huggies", "Lysol", "Sanofi", "Zevo",
     ],
   },
   {
