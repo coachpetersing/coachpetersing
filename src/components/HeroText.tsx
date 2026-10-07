@@ -3,7 +3,7 @@ export default function HeroText({ headline, sub }: { headline: string; sub: str
   const words = headline.split(" ");
   return (
     <>
-      <h1 className="font-display text-[40px] font-extrabold leading-[1.02] tracking-tight text-ink sm:text-[56px] lg:text-[clamp(44px,4.6vw,76px)]">
+      <h1 className="font-display text-[38px] font-extrabold leading-[1.04] tracking-tight text-ink sm:text-[48px] md:text-[44px] lg:text-[60px] xl:text-[68px]">
         {words.map((w, i) => (
           <span
             key={i}
