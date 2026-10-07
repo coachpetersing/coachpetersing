@@ -10,7 +10,7 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = pageMeta(copy.contact.title, descriptions.contact, "/contact");
 
-// Inlined at build time. Unset means no form: the page shows only the email and Book a call.
+// Inlined at build time. Unset means no form: the page shows only the email and Book a session.
 const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID?.trim() || "";
 
 export default function ContactPage() {

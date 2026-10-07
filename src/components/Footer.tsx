@@ -29,7 +29,7 @@ export default function Footer() {
           <a href={`mailto:${site.email}`} className="mt-2 block break-all font-body text-base hover:text-tan">
             {site.email}
           </a>
-          <a href={bookingHref()} className="mt-4 inline-block font-body text-base underline underline-offset-4 hover:text-tan">
+          <a href={bookingHref()} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block font-body text-base underline underline-offset-4 hover:text-tan">
             {copy.footer.bookLabel}
           </a>
         </div>

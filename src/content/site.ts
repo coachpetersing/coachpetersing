@@ -9,7 +9,7 @@ export const site = {
   /** Every "DM me" link goes here. */
   dmUrl: "https://www.instagram.com/thesingfamily",
   /** Every "Work with me" button goes here, in a new tab. */
-  workWithMeUrl: "https://cal.com/coachpetersing/intro",
+  workWithMeUrl: "https://cal.com/coachpetersing",
   familySocial: [
     { name: "TikTok", url: "https://www.tiktok.com/@thesingfamily", followers: "1.1M" },
     { name: "Instagram", url: "https://www.instagram.com/thesingfamily", followers: "476K" },

@@ -39,7 +39,7 @@ export const copy = {
     aboutLink: "More about me",
     faqHeading: "Questions",
     ctaHeading: "Want to talk?",
-    ctaBody: "Book a free 15-minute call or send me a note. I'll get back to you within two days.",
+    ctaBody: "Book a session or send me a note. I'll get back to you within two days.",
   },
   work: {
     title: "Work",
@@ -66,7 +66,7 @@ export const copy = {
       {
         key: "oneOnOne" as const,
         body: "We sit down with your account and go through what you've been posting and what you might try next. If you're starting to talk with brands, we can go over pricing and the deal too. Sessions are over video or in person in Orange County, and I send a short written recap afterward.",
-        cta: "Book a call",
+        cta: "Book a session",
       },
       {
         key: "workshop" as const,
@@ -76,7 +76,7 @@ export const copy = {
       {
         key: "business" as const,
         body: "This is for professionals and small business owners who want to post regularly without it taking over their week. We put together a simple plan built around the work you already do, and I look over your first month of posts with you.",
-        cta: "Book a call",
+        cta: "Book a session",
       },
     ],
     closerBefore: "Not sure which one?",
@@ -136,7 +136,7 @@ export const copy = {
     title: "Contact",
     heading: "Say hi",
     body: "Tell me a little about what you're working on. I'll get back to you within two days.",
-    bookCall: "Book a call",
+    bookCall: "Book a session",
     copyEmail: "Copy",
     copied: "Copied",
     formHeading: "Or send a note",
@@ -183,12 +183,12 @@ export const copy = {
   footer: {
     tagline: "Content coaching for creators, actors, and small businesses.",
     emailLabel: "Email",
-    bookLabel: "Book a call",
+    bookLabel: "Book a session",
     familyLabel: "The Sing Family",
     rights: "Peter Sing. All rights reserved.",
   },
   common: {
-    bookCall: "Book a call",
+    bookCall: "Book a session",
     emailMe: "Email me",
     dm: "DM me",
   },
