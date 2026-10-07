@@ -50,8 +50,6 @@ export default function BrandsPage() {
               <p className="font-body text-sm font-medium uppercase tracking-[0.18em] text-tan">{p.name}</p>
               <p className="mt-3 font-display text-5xl font-extrabold tabular-nums tracking-tight md:text-6xl">{p.followers}</p>
               <p className="mt-1 font-body text-base text-white/70">followers</p>
-              <p className="mt-4 font-display text-3xl font-bold tabular-nums tracking-tight text-cream">{p.views}</p>
-              <p className="mt-1 font-body text-base text-white/70">views</p>
             </div>
           ))}
         </div>
