@@ -33,15 +33,15 @@ export default function AboutPage() {
           </div>
 
           <aside className="md:col-span-4 md:col-start-9">
-            {site.headshot && (
+            {(site.aboutPhoto || site.headshot) && (
               <div className="relative mb-12 aspect-[4/5] overflow-hidden rounded-3xl bg-cream">
                 <Image
-                  src={site.headshot}
+                  src={(site.aboutPhoto || site.headshot) as string}
                   alt="Peter Sing"
                   fill
                   priority
                   sizes="(min-width: 1200px) 380px, (min-width: 768px) 33vw, 100vw"
-                  className="object-cover object-[72%_35%]"
+                  className={`object-cover ${site.aboutPhoto ? "object-[50%_30%]" : "object-[72%_35%]"}`}
                 />
               </div>
             )}

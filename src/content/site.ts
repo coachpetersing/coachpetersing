@@ -18,6 +18,8 @@ export const site = {
   // Peter supplies these. Set to null until the files exist in /public/images.
   headshot: "/images/peter-headshot.jpg" as string | null,
   secondPhoto: null as string | null, // e.g. "/images/peter-candid.jpg"
+  /** Photo beside the story on the About page. Falls back to the headshot. */
+  aboutPhoto: "/images/peter-portrait.jpg" as string | null,
   colors: {
     ink: "#0E1A12",
     forest: "#1F3D2B",
