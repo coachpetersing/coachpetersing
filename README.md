@@ -78,13 +78,13 @@ The headshot is `public/images/peter-headshot.jpg`, set as `headshot` in `site.t
 
 The home marquee and the Work page wall show official logos from `public/logos/`, listed in [`src/content/logos.ts`](src/content/logos.ts). Brands without an entry there show as a text wordmark. Every logo is drawn as a single flat color by CSS (cream on dark, ink on light), so the files themselves can be any color.
 
-Rules for adding one: use Simple Icons (CC0) first, then an SVG the brand itself publishes (press page, media kit, or its own site). Never trace, recreate, or generate a logo. Before adding it, check it still reads as a single color: logos that rely on a colored box with white lettering turn into a solid shape. Use a version that spells out the brand name: icon-only marks (a checkmark, arches, a bullseye) don't say who the brand is, so those brands stay as text until a wordmark turns up.
+Rules for adding one: use the brand's own file. In order of preference: Simple Icons (CC0), an SVG the brand publishes (press page, media kit, or its own site header), then the brand's own PNG at the largest size it publishes. Never trace, redraw, upscale, or generate a logo, and never use third-party logo sites. Every brand on the site has a logo; prefer a version that spells out the name.
 
-Hovering a logo (or tabbing to it, or tapping it on a phone) crossfades it to the brand name in the same spot, and the marquee pauses while you're over it. The swap styles live in `src/app/globals.css` under `.brand-slot`.
+Full-color logos that rely on white lettering inside a colored shape turn into a solid blob as a single color. For those, the official file is converted to one color without changing any shape: white parts become see-through cut-outs (CeraVe, Clorox, Costco, Lego, Mattel, Charmin, Swiffer, Bounty, Luvs, Oreo, Cocomelon, Annie's, Lysol), or lighter colors become lighter tints (Tide, Minecraft, Puffs). The converters live outside the repo; ask for them if a logo changes.
 
 To add a logo:
-1. Save the official SVG and crop its viewBox to the artwork, then run it through SVGO (`npx svgo file.svg`).
-2. Put it in `public/logos/<brand-slug>.svg`.
+1. Save the official file. For an SVG, crop its viewBox to the artwork and run it through SVGO (`npx svgo file.svg`). For a PNG, trim it to the artwork and keep it about 160px tall.
+2. Put it in `public/logos/<brand-slug>.svg` (or `.png`).
 3. Add a line to `logos.ts` with the file, its `ratio` (viewBox width / height), and where it came from. Add `scale` (for example `1.15`) if it looks too small or large next to the others.
 
 Sub-brands without their own logo go in `logoParent` (Dove Men+Care and Baby Dove point to Dove). Once the parent has a logo, it shows once and the sub-brands drop out of the logo rows.
