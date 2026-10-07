@@ -130,7 +130,6 @@ export const copy = {
       { when: "2019 to now", what: "The Sing Family", detail: "Comedy videos with my family" },
       { when: "Now", what: "Content Creator Coaching", detail: "Coaching for creators and small businesses" },
     ],
-    education: "BA, Global Marketing and Finance, California State University, Fullerton. SAG-AFTRA member.",
     familyHeading: "The Sing Family",
   },
   contact: {

@@ -29,7 +29,6 @@ export default function AboutPage() {
                 {p}
               </p>
             ))}
-            <p className="pt-2 font-body text-base text-offblack/70">{c.education}</p>
           </div>
 
           <aside className="md:col-span-4 md:col-start-9">
