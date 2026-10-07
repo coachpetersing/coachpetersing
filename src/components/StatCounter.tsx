@@ -12,8 +12,11 @@ export default function StatCounter({
   label: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  // Whole numbers count as integers; values like 1.7 keep one decimal place.
+  const decimals = Number.isInteger(value) ? 0 : 1;
+  const fmt = (n: number) => n.toFixed(decimals);
   // Start at the final value so the number is right with JavaScript off and never shows a stray 0.
-  const [display, setDisplay] = useState(value);
+  const [display, setDisplay] = useState(fmt(value));
 
   useEffect(() => {
     const el = ref.current;
@@ -29,10 +32,10 @@ export default function StatCounter({
         const tick = (now: number) => {
           const p = Math.min(1, (now - t0) / duration);
           const eased = 1 - Math.pow(1 - p, 3);
-          setDisplay(Math.round(eased * value));
+          setDisplay(fmt(eased * value));
           if (p < 1) frame = requestAnimationFrame(tick);
         };
-        setDisplay(0);
+        setDisplay(fmt(0));
         frame = requestAnimationFrame(tick);
       },
       { rootMargin: "-40px 0px" },
@@ -42,7 +45,7 @@ export default function StatCounter({
       io.disconnect();
       cancelAnimationFrame(frame);
     };
-  }, [value]);
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div ref={ref}>

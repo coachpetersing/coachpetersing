@@ -38,10 +38,7 @@ export default function CampaignCard({
     <article className="group flex flex-col transition-transform duration-300 ease-out hover:-translate-y-1.5 motion-reduce:hover:translate-y-0">
       {media}
       <div className="mt-5">
-        <p className="font-body text-sm font-medium uppercase tracking-[0.18em] text-forest">
-          {c.brand}
-          {c.year && <span className="text-offblack/70"> &middot; {c.year}</span>}
-        </p>
+        <p className="font-body text-sm font-medium uppercase tracking-[0.18em] text-forest">{c.brand}</p>
         <h3 className="mt-1 font-display text-xl font-bold tracking-tight text-ink">{c.name}</h3>
         <p
           className={`mt-3 font-display font-extrabold tabular-nums tracking-tight text-ink ${

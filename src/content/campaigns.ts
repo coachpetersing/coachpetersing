@@ -322,16 +322,21 @@ export function headlineViews(c: Campaign): number {
   return parseFloat(m[1]) * mult;
 }
 
-export const visibleCampaigns = campaigns.filter((c) => !c.hidden);
+/** Newest year first, then most views. Campaigns without a year go last. */
+export const byYearThenViews = (a: Campaign, b: Campaign) =>
+  (b.year ?? 0) - (a.year ?? 0) || headlineViews(b) - headlineViews(a);
+
+/** Everything shown on the Work page, in display order. */
+export const visibleCampaigns = campaigns.filter((c) => !c.hidden).sort(byYearThenViews);
 
 /**
- * Home page picks: visible featured campaigns in the order above. If fewer than four survive,
- * the highest-view visible campaigns fill the rest.
+ * Home page picks: visible featured campaigns, in the same order as the Work page. If fewer than
+ * four survive, the highest-view visible campaigns fill the rest, and the result is re-sorted.
  */
 export const featuredCampaigns: Campaign[] = (() => {
   const picks = visibleCampaigns.filter((c) => c.featured);
   const rest = visibleCampaigns.filter((c) => !c.featured).sort((a, b) => headlineViews(b) - headlineViews(a));
-  return [...picks, ...rest].slice(0, Math.max(4, picks.length));
+  return [...picks, ...rest].slice(0, Math.max(4, picks.length)).sort(byYearThenViews);
 })();
 
 export const repeatPartners = [

@@ -1,23 +1,23 @@
 export const faq = [
   {
     q: "Do I need followers to work with you?",
-    a: "No. You need a phone and a willingness to be on camera.",
+    a: "No. If you have a phone and you're willing to be on camera, we can start there.",
   },
   {
     q: "I have a business, not a creator account. Is this for me?",
-    a: "Yes. About a third of the people I talk to are business owners. The system is built around what you already do all day.",
+    a: "Yes. About a third of the people I talk to are business owners, and we build the plan around the work you already do.",
   },
   {
     q: "Do you work with brands directly?",
-    a: "Yes. Partnerships on The Sing Family, consulting for agencies, and training for in-house teams. See the Brands page.",
+    a: "Yes. I do sponsored work on The Sing Family and also help agencies and in-house teams with their creator programs. The Brands page has more.",
   },
   {
     q: "Where are you?",
-    a: "Orange County, CA. In person across Orange County, online anywhere.",
+    a: "I'm in Orange County, CA. I meet in person around Orange County and online with people anywhere.",
   },
   {
     q: "How is this different from a course?",
-    a: "You film and get notes from me the same day. A course can't watch your video.",
+    a: "We work on your own videos, and you get feedback from me the same day, which is hard to get from a course.",
   },
   {
     q: "What do you charge?",
