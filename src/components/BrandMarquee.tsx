@@ -1,19 +1,18 @@
 import { tier1, restBrands } from "@/content/brands";
+import { foldSubBrands } from "@/content/logos";
+import BrandMark from "./BrandMark";
 
 function Row({ brands, reverse }: { brands: string[]; reverse?: boolean }) {
   const Track = ({ hidden }: { hidden?: boolean }) => (
     <ul
       aria-hidden={hidden || undefined}
-      className={`flex shrink-0 items-center gap-10 pr-10 md:gap-14 md:pr-14 ${
+      className={`flex shrink-0 items-center gap-12 pr-12 md:gap-16 md:pr-16 ${
         hidden ? "motion-reduce:hidden" : "motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-y-4"
       }`}
     >
       {brands.map((b) => (
-        <li
-          key={b}
-          className="whitespace-nowrap font-display text-2xl font-bold uppercase tracking-wide text-cream/90 md:text-4xl"
-        >
-          {b}
+        <li key={b} className="flex items-center text-cream">
+          <BrandMark brand={b} />
         </li>
       ))}
     </ul>
@@ -40,8 +39,8 @@ export default function BrandMarquee({ heading }: { heading: string }) {
         {heading}
       </h2>
       <div className="space-y-6 md:space-y-8">
-        <Row brands={tier1} />
-        <Row brands={restBrands} reverse />
+        <Row brands={foldSubBrands(tier1)} />
+        <Row brands={foldSubBrands(restBrands)} reverse />
       </div>
     </section>
   );

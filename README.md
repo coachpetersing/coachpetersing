@@ -74,6 +74,19 @@ Videos are muted, lazy-loaded, and play on hover (desktop) or tap (mobile). They
 
 The headshot is `public/images/peter-headshot.jpg`, set as `headshot` in `site.ts`. On large screens it fills the hero, anchored right, with a cream gradient on the left; below 1024 px it sits above the text, framed on the face. The About page uses the same file cropped to 4:5. To swap it, replace the file with one framed the same way: plain light background, face in the right third, at least 2000 px wide. The link preview image uses a separate crop at `src/app/og-headshot.jpg` (600 x 630); regenerate it if the photo changes. A second candid goes in `secondPhoto` and shows on the home page about teaser.
 
+## Brand logos
+
+The home marquee and the Work page wall show official logos from `public/logos/`, listed in [`src/content/logos.ts`](src/content/logos.ts). Brands without an entry there show as a text wordmark. Every logo is drawn as a single flat color by CSS (cream on dark, ink on light), so the files themselves can be any color.
+
+Rules for adding one: use Simple Icons (CC0) first, then an SVG the brand itself publishes (press page, media kit, or its own site). Never trace, recreate, or generate a logo. Before adding it, check it still reads as a single color: logos that rely on a colored box with white lettering turn into a solid shape.
+
+To add a logo:
+1. Save the official SVG and crop its viewBox to the artwork, then run it through SVGO (`npx svgo file.svg`).
+2. Put it in `public/logos/<brand-slug>.svg`.
+3. Add a line to `logos.ts` with the file, its `ratio` (viewBox width / height), and where it came from. Add `scale` (for example `1.15`) if it looks too small or large next to the others.
+
+Sub-brands without their own logo go in `logoParent` (Dove Men+Care and Baby Dove point to Dove). Once the parent has a logo, it shows once and the sub-brands drop out of the logo rows.
+
 ## Add brands
 
 [`src/content/brands.ts`](src/content/brands.ts), grouped by category. Add the name to the right group. Text wordmarks only. Do not pull logos from the internet.

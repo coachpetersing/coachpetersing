@@ -48,6 +48,7 @@ export const copy = {
     repeatHeading: "Repeat partners",
     wallHeading: "All brands",
     tier1Heading: "A few you may know",
+    trademarkNote: "Logos are trademarks of their respective owners and are shown to identify past brand partners.",
     ctaHeading: "Working on a campaign?",
     ctaBody: "I take on a small number of brand partnerships each year. Tell me what you have in mind.",
     ctaButton: "For brands and agencies",
