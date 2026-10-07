@@ -84,7 +84,7 @@ The `tier1` list in the same file sets the biggest names, in order. They make up
 
 ## Swap a link
 
-- Cal.com booking: every "Work with me" and "Book a session" button goes to `bookingPageUrl` in [`src/content/offers.ts`](src/content/offers.ts), which lists all sessions. Only the Coaching page links straight to a session: the 30 and 60 minute options use their own `bookingUrl`, and the intro line uses `introCallUrl`.
+- Cal.com booking: every "Work with me" and "Book a session" button goes to `bookingPageUrl` in [`src/content/offers.ts`](src/content/offers.ts), which lists all sessions. Only the Coaching page links straight to a session: the 30 and 60 minute options use their own `bookingUrl`. The free 15-minute consult is not bookable; it's requested by email (subject "Free consult request") from the Coaching page, the home closing section, and the Contact page. The build fails if a link to the old `/intro` booking page comes back.
 - Formspree contact form: create a free form at formspree.io and copy the id from the endpoint (`https://formspree.io/f/<id>`). In Vercel, Project > Settings > Environment Variables, add `NEXT_PUBLIC_FORMSPREE_ID` with that id for Production and Preview, then redeploy. Locally, put it in `.env.local`. While it's unset, the Contact page hides the form and shows only the email and Book a session. The form submits in place and shows a confirmation without leaving the page.
 - "Work with me" buttons and "DM me" links: `workWithMeUrl` and `dmUrl` in `site.ts`. The @coachpetersing social accounts are deliberately not linked; the build fails if one of those URLs shows up in `src`.
 - Workshops: the button says "Ask about workshops" and goes to the Contact page.

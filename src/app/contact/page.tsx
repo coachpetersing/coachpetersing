@@ -6,6 +6,7 @@ import Section, { Eyebrow } from "@/components/Section";
 import Button from "@/components/Button";
 import EmailCopy from "@/components/EmailCopy";
 import ContactForm from "@/components/ContactForm";
+import ConsultNote from "@/components/ConsultNote";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = pageMeta(copy.contact.title, descriptions.contact, "/contact");
@@ -29,6 +30,7 @@ export default function ContactPage() {
           <Button href={bookingHref()} variant="ink" size="lg">
             {c.bookCall}
           </Button>
+          <ConsultNote className="mt-4" />
         </div>
       </Section>
 

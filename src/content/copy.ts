@@ -83,8 +83,6 @@ export const copy = {
     closerLink: "Email me",
     closerAfter: "and tell me what you're trying to do.",
     bookOption: "Book",
-    introBefore: "Not sure yet?",
-    introLink: "Book a free 15\u2011minute intro call.", // non-breaking hyphen so "15-minute" never wraps
     nextDateLabel: "Next date",
   },
   brands: {
@@ -186,6 +184,14 @@ export const copy = {
     bookLabel: "Book a session",
     familyLabel: "The Sing Family",
     rights: "Peter Sing. All rights reserved.",
+  },
+  // Free 15-minute consult, requested by email. Non-breaking hyphen so "15-minute" never wraps.
+  consult: {
+    subject: "Free consult request",
+    coachingBefore: "Not sure yet? Email me at",
+    coachingAfter: "to request a free 15\u2011minute consult.",
+    shortBefore: "Want to talk first? Email",
+    shortAfter: "for a free 15\u2011minute consult.",
   },
   common: {
     bookCall: "Book a session",

@@ -25,7 +25,7 @@ for (const f of walk("src")) {
   if (socialRe.test(fs.readFileSync(f, "utf8"))) problems.push(`@coachpetersing social link found in ${f}`);
 }
 // Wording Peter has ruled out: "ten years as Director", "Fortune 500", and wrap-up punchlines.
-const banned = [/years as Director/i, /Fortune 500/i, /learned how to teach/i, /that['’]s where I/i, /that['’]s how I/i];
+const banned = [/cal\.com\/coachpetersing\/intro/i, /years as Director/i, /Fortune 500/i, /learned how to teach/i, /that['’]s where I/i, /that['’]s how I/i];
 for (const f of walk("src")) {
   const text = fs.readFileSync(f, "utf8");
   for (const re of banned) if (re.test(text)) problems.push(`banned phrase ${re} found in ${f}`);

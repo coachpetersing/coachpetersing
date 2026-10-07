@@ -103,7 +103,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <CTA heading={c.ctaHeading} body={c.ctaBody} />
+      <CTA heading={c.ctaHeading} body={c.ctaBody} consultNote />
     </>
   );
 }

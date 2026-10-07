@@ -2,6 +2,7 @@ import { site } from "@/content/site";
 import { copy } from "@/content/copy";
 import { bookingHref, mailto } from "@/lib/links";
 import Button from "./Button";
+import ConsultNote from "./ConsultNote";
 
 export default function CTA({
   heading,
@@ -9,12 +10,15 @@ export default function CTA({
   primaryHref,
   primaryLabel,
   showAll = true,
+  consultNote = false,
 }: {
   heading: string;
   body: string;
   primaryHref?: string;
   primaryLabel?: string;
   showAll?: boolean;
+  /** Small "Want to talk first?" line under the buttons. */
+  consultNote?: boolean;
 }) {
   return (
     <section className="bg-ink py-24 text-white md:py-32">
@@ -42,6 +46,7 @@ export default function CTA({
             </>
           )}
         </div>
+        {consultNote && <ConsultNote dark className="mt-5" />}
         <a href={`mailto:${site.email}`} className="mt-10 inline-block font-body text-lg text-tan underline-offset-4 hover:underline">
           {site.email}
         </a>

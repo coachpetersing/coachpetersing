@@ -1,9 +1,6 @@
 /** The Cal.com page that lists every session. Every "Work with me" and "Book a session" button goes here. */
 export const bookingPageUrl = "https://cal.com/coachpetersing";
 
-/** The free 15-minute intro call. Linked directly only from the 1:1 card on the Coaching page. */
-export const introCallUrl = "https://cal.com/coachpetersing/intro";
-
 export type SessionOption = { label: string; priceUsd: number; bookingUrl: string };
 
 export const offers = {

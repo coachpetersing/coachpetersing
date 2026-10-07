@@ -1,7 +1,8 @@
-import { offers, isSet, introCallUrl } from "@/content/offers";
+import { offers, isSet } from "@/content/offers";
 import { copy } from "@/content/copy";
 import { bookingHref } from "@/lib/links";
 import Button from "./Button";
+import ConsultNote from "./ConsultNote";
 
 type Key = "oneOnOne" | "workshop" | "business";
 
@@ -41,17 +42,7 @@ export default function OfferCard({ offerKey, body, cta }: { offerKey: Key; body
             </li>
           ))}
         </ul>
-        <p className="mt-5 font-body text-base text-offblack">
-          {c.introBefore}{" "}
-          <a
-            href={bookingHref(introCallUrl)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-forest underline underline-offset-4 hover:text-ink"
-          >
-            {c.introLink}
-          </a>
-        </p>
+        <ConsultNote variant="coaching" className="mt-5" />
       </div>
     );
   } else {
