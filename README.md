@@ -78,7 +78,9 @@ The headshot is `public/images/peter-headshot.jpg`, set as `headshot` in `site.t
 
 The home marquee and the Work page wall show official logos from `public/logos/`, listed in [`src/content/logos.ts`](src/content/logos.ts). Brands without an entry there show as a text wordmark. Every logo is drawn as a single flat color by CSS (cream on dark, ink on light), so the files themselves can be any color.
 
-Rules for adding one: use Simple Icons (CC0) first, then an SVG the brand itself publishes (press page, media kit, or its own site). Never trace, recreate, or generate a logo. Before adding it, check it still reads as a single color: logos that rely on a colored box with white lettering turn into a solid shape.
+Rules for adding one: use Simple Icons (CC0) first, then an SVG the brand itself publishes (press page, media kit, or its own site). Never trace, recreate, or generate a logo. Before adding it, check it still reads as a single color: logos that rely on a colored box with white lettering turn into a solid shape. Use a version that spells out the brand name: icon-only marks (a checkmark, arches, a bullseye) don't say who the brand is, so those brands stay as text until a wordmark turns up.
+
+Hovering a logo (or tabbing to it, or tapping it on a phone) crossfades it to the brand name in the same spot, and the marquee pauses while you're over it. The swap styles live in `src/app/globals.css` under `.brand-slot`.
 
 To add a logo:
 1. Save the official SVG and crop its viewBox to the artwork, then run it through SVGO (`npx svgo file.svg`).

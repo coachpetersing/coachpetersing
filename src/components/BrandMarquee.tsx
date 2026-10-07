@@ -12,7 +12,7 @@ function Row({ brands, reverse }: { brands: string[]; reverse?: boolean }) {
     >
       {brands.map((b) => (
         <li key={b} className="flex items-center text-cream">
-          <BrandMark brand={b} />
+          <BrandMark brand={b} decorative={hidden} />
         </li>
       ))}
     </ul>
@@ -20,7 +20,7 @@ function Row({ brands, reverse }: { brands: string[]; reverse?: boolean }) {
   return (
     <div className="overflow-hidden">
       <div
-        className={`flex w-max ${reverse ? "animate-marquee-reverse" : "animate-marquee"} motion-reduce:w-full motion-reduce:animate-none`}
+        className={`marquee-track flex w-max ${reverse ? "animate-marquee-reverse" : "animate-marquee"} motion-reduce:w-full motion-reduce:animate-none`}
         // Scale duration with length so both rows drift at the same speed.
         style={{ animationDuration: `${brands.length * 3}s` }}
       >
