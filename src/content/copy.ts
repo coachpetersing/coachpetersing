@@ -32,7 +32,7 @@ export const copy = {
     how: [
       "Sessions are mostly hands-on. We look at your account together, talk through what's working and what isn't, and figure out what to try next.",
       "A lot of what I share comes from my own trial and error over the last seven years, including plenty of brand campaigns that taught me what audiences respond to.",
-      "Before content, I spent ten years at PwC, where I was Director of Learning and Development on client programs. That's where I learned how to teach.",
+      "I also spent ten years at PwC as Director of Learning and Development on client programs with budgets up to $100M+, running training for teams at large companies.",
     ],
     aboutTeaser:
       "I'm Peter. I live in Orange County with my wife Elena and our kids, and we make comedy videos together as The Sing Family. I'm also a SAG-AFTRA actor.",
@@ -107,7 +107,7 @@ export const copy = {
       },
       {
         title: "Team training",
-        body: "I run half-day or full-day sessions for marketing teams on working with creators. I did this kind of training at PwC, where I was Director of Learning and Development on client programs.",
+        body: "I run half-day or full-day sessions for marketing teams on working with creators. I did this kind of training at PwC, where I was Director of Learning and Development on client programs with budgets up to $100M+.",
       },
     ],
     audienceHeading: "The audience",
@@ -121,12 +121,12 @@ export const copy = {
     heading: "About Peter",
     body: [
       "I'm Peter Sing. My wife Elena and I started making comedy videos as The Sing Family in 2019, and about 1.7 million people now follow along on TikTok, Instagram, and YouTube. Over the years we've partnered with brands like Coca-Cola, Walmart, Amazon, McDonald's, Disney, Dove, Verizon, and Lexus. I handle most of the work on those campaigns myself, from writing and shooting to the contract and the report at the end.",
-      "I also spent ten years at PwC, from 2014 to 2024, where I was Director of Learning and Development on client programs for Fortune 500 companies. Most of that work was helping people at large companies learn new systems when their organizations rolled them out.",
+      "I also spent ten years at PwC, from 2014 to 2024, as Director of Learning and Development on client programs with budgets up to $100M+. Most of that work was helping teams at large companies learn new systems when their organizations rolled them out.",
       "I'm a SAG-AFTRA member and have trained as an actor, which helps a lot with the on-camera side.",
       "I started coaching because friends and other creators kept asking me the same questions, and I wanted to give them better answers than I could in a quick DM.",
     ],
     timeline: [
-      { when: "2014 to 2024", what: "PwC", detail: "Director of Learning and Development on client programs for Fortune 500 clients" },
+      { when: "2014 to 2024", what: "PwC", detail: "Director of Learning and Development on client programs with budgets up to $100M+" },
       { when: "2019 to now", what: "The Sing Family", detail: "Comedy videos with my family" },
       { when: "Now", what: "Content Creator Coaching", detail: "Coaching for creators and small businesses" },
     ],

@@ -20,7 +20,7 @@ export const descriptions = {
   work: "Brand campaigns from The Sing Family with Coca-Cola, Wonka x IHOP, Charmin, Disney, and others.",
   coaching: "1:1 content coaching from $150, small-group workshops in Orange County and online, and help for small businesses that want to post more consistently.",
   brands: "Work with Peter Sing on creator partnerships with The Sing Family, campaign consulting, speaking, or team training.",
-  about: "Peter Sing runs The Sing Family with his wife Elena, spent ten years at PwC, where he was Director of Learning and Development on client programs, and is a SAG-AFTRA actor. He coaches creators, actors, and business owners from Orange County, CA.",
+  about: "Peter Sing runs The Sing Family with his wife Elena, spent ten years at PwC, and is a SAG-AFTRA actor. He coaches creators, actors, and business owners from Orange County, CA.",
   contact: "Email Peter Sing, book a call, or send a note. He replies within two days.",
   thanks: "Your message is in. Peter replies within two days.",
   privacy: "What coachpetersing.com collects and what it does with it, in plain English.",
