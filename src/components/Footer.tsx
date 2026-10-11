@@ -1,64 +1,52 @@
 import Link from "next/link";
-import { nav, site } from "@/content/site";
+import { site } from "@/content/site";
 import { copy } from "@/content/copy";
-import { bookingHref } from "@/lib/links";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer className="bg-ink pb-24 pt-16 text-white lg:pb-16">
-      <div className="mx-auto grid w-full max-w-site gap-12 px-5 md:grid-cols-12 md:px-8">
+    <footer className="grain border-t border-forest-800 bg-forest-950 px-4 pb-12 pt-16 sm:px-6">
+      <div className="wrap grid gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
-          <p className="font-display text-2xl font-extrabold tracking-tight">{site.name}</p>
-          <p className="mt-3 max-w-sm font-body text-base text-white/70">{copy.footer.tagline}</p>
-        </div>
-
-        <div className="md:col-span-2">
-          <ul className="space-y-2 font-body text-base">
-            {nav.map((n) => (
-              <li key={n.href}>
-                <Link href={n.href} className="text-white/80 hover:text-tan">
-                  {n.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="md:col-span-3">
-          <p className="font-body text-sm uppercase tracking-[0.18em] text-tan">{copy.footer.emailLabel}</p>
-          <a href={`mailto:${site.email}`} className="mt-2 block break-all font-body text-base hover:text-tan">
+          <p className="font-display text-4xl font-extrabold uppercase leading-none tracking-tight">
+            Peter Sing <span className="kicker align-middle text-tan-400">Coaching</span>
+          </p>
+          <p className="kicker mt-6 text-muted">{copy.footer.contact}</p>
+          <a href={`mailto:${site.email}`} className="link mt-2 inline-block break-all">
             {site.email}
           </a>
-          <a href={bookingHref()} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block font-body text-base underline underline-offset-4 hover:text-tan">
-            {copy.footer.bookLabel}
-          </a>
         </div>
 
-        <div className="md:col-span-2">
-          <p className="font-body text-sm uppercase tracking-[0.18em] text-tan">{copy.footer.familyLabel}</p>
-          <ul className="mt-2 space-y-2 font-body text-base">
-            {site.familySocial.map((f) => (
-              <li key={f.name}>
-                <a href={f.url} target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-tan">
-                  {f.name} <span className="text-white/50">{f.followers}</span>
+        <div className="md:col-span-4">
+          <p className="kicker text-muted">{copy.footer.follow}</p>
+          <ul className="mt-2 space-y-2">
+            {site.social.map((s) => (
+              <li key={s.name}>
+                <a href={s.url} target="_blank" rel="noopener noreferrer" className="group inline-flex items-baseline gap-3 hover:text-tan-400">
+                  <span>
+                    {s.name}
+                    {s.name === "Instagram" ? ` ${site.instagramHandle}` : ""}
+                  </span>
+                  <span className="font-display text-xl font-bold text-tan-400">{s.followers}</span>
                 </a>
               </li>
             ))}
           </ul>
         </div>
-      </div>
 
-      <div className="mx-auto mt-14 flex w-full max-w-site flex-wrap items-center justify-between gap-3 border-t border-white/10 px-5 pt-6 font-body text-sm text-white/50 md:px-8">
-        <p>
-          &copy; {new Date().getFullYear()} {copy.footer.rights}
-        </p>
-        <p>
-          {site.location} &middot;{" "}
-          <Link href="/privacy" className="hover:text-white">
-            Privacy
-          </Link>
-        </p>
+        <nav aria-label="Footer" className="md:col-span-3">
+          <ul className="space-y-2">
+            {copy.footer.links.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="hover:text-tan-400">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
+      <p className="wrap mt-12 text-sm text-muted">© {year} Peter Sing</p>
     </footer>
   );
 }

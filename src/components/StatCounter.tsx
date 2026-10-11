@@ -2,43 +2,30 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export default function StatCounter({
-  value,
-  suffix,
-  label,
-}: {
-  value: number;
-  suffix: string;
-  label: string;
-}) {
+/** Counts up once when it scrolls into view. Renders the final value first, and stays there with reduced motion or no JS. */
+export default function StatCounter({ value, decimals, suffix, label }: { value: number; decimals: number; suffix: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  // Whole numbers count as integers; values like 1.7 keep one decimal place.
-  const decimals = Number.isInteger(value) ? 0 : 1;
   const fmt = (n: number) => n.toFixed(decimals);
-  // Start at the final value so the number is right with JavaScript off and never shows a stray 0.
   const [display, setDisplay] = useState(fmt(value));
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Counting 0 to 1 looks broken ("0B+"), so small numbers just show.
+    if (!el || (value < 10 && decimals === 0) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let frame = 0;
     const io = new IntersectionObserver(
       ([e]) => {
         if (!e.isIntersecting) return;
         io.disconnect();
-        const duration = 1500;
         const t0 = performance.now();
         const tick = (now: number) => {
-          const p = Math.min(1, (now - t0) / duration);
-          const eased = 1 - Math.pow(1 - p, 3);
-          setDisplay(fmt(eased * value));
+          const p = Math.min(1, (now - t0) / 1200);
+          setDisplay(fmt((1 - Math.pow(1 - p, 3)) * value));
           if (p < 1) frame = requestAnimationFrame(tick);
         };
-        setDisplay(fmt(0));
         frame = requestAnimationFrame(tick);
       },
-      { rootMargin: "-40px 0px" },
+      { rootMargin: "0px 0px -40px 0px" },
     );
     io.observe(el);
     return () => {
@@ -49,11 +36,18 @@ export default function StatCounter({
 
   return (
     <div ref={ref}>
-      <p className="font-display text-6xl font-extrabold leading-none tabular-nums tracking-tight text-tan md:text-7xl lg:text-8xl">
-        {display}
-        {suffix}
+      {/* Screen readers get the final number, not every frame of the count. */}
+      <p className="sr-only">
+        {fmt(value)}
+        {suffix} {label}
       </p>
-      <p className="mt-3 font-body text-base text-white/70 md:text-lg">{label}</p>
+      <div aria-hidden="true">
+        <p className="font-display text-[56px] font-extrabold leading-none tabular-nums text-tan-400 sm:text-[72px]">
+          {display}
+          {suffix}
+        </p>
+        <p className="mt-2 text-base text-muted">{label}</p>
+      </div>
     </div>
   );
 }

@@ -1,41 +1,51 @@
-// Fails the build if the content files drift: every campaign brand must be in brands.ts,
-// every tier1 brand must exist in a category group, and no em dashes anywhere in src/content.
+// Fails the build if banned content shows up.
+//   node scripts/check-content.mjs           checks src/ and scripts/ (runs before build)
+//   node scripts/check-content.mjs --built   checks the built HTML and RSC output (runs after build)
+// Rules: no em dashes, no old prices or free consult, no old Cal.com "Work with me" booking links.
 import fs from "node:fs";
+import path from "node:path";
 
-const brandsSrc = fs.readFileSync("src/content/brands.ts", "utf8");
-const campaignsSrc = fs.readFileSync("src/content/campaigns.ts", "utf8");
+const built = process.argv.includes("--built");
+const walk = (dir) =>
+  fs.existsSync(dir)
+    ? fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => (d.isDirectory() ? walk(path.join(dir, d.name)) : [path.join(dir, d.name)]))
+    : [];
 
-const groupsBlock = brandsSrc.slice(brandsSrc.indexOf("brandGroups"), brandsSrc.indexOf("allBrands"));
-const tier1Block = brandsSrc.slice(brandsSrc.indexOf("export const tier1"), brandsSrc.indexOf("restGroups"));
-const strings = (block) => [...block.matchAll(/"((?:[^"\\]|\\.)+)"/g)].map((m) => m[1]);
-const inGroups = new Set(strings(groupsBlock).filter((s) => !/^(category|brands)$/.test(s)));
-const tier1 = strings(tier1Block);
+const rules = [
+  { name: "em dash", re: /—/ },
+  { name: "old $150 price", re: /\$150\b/ },
+  { name: "old $250 price", re: /\$250\b/ },
+  { name: "free consult", re: /free (15[\s‑-]minute )?consult/i },
+  { name: "old Cal.com booking page", re: /cal\.com\/coachpetersing(?!\/[\w-]*coaching)/i },
+  { name: '"Work with me" button', re: /Work with me/ },
+];
 
-const campaignBlock = campaignsSrc.slice(campaignsSrc.indexOf("export const campaigns"), campaignsSrc.indexOf("export const repeatPartners"));
-// "Wonka x IHOP" is a co-brand, so each side must be listed.
-const campaignBrands = [...campaignBlock.matchAll(/brand: "([^"]+)"/g)].flatMap((m) => m[1].split(" x "));
+let files;
+if (built) {
+  // Only our pages: the prerendered HTML and RSC payloads Next writes for each route.
+  files = walk(".next/server/app").filter((f) => /\.(html|rsc|body|meta)$/.test(f));
+  if (!files.length) {
+    console.error("content check: no built pages found in .next/server/app");
+    process.exit(1);
+  }
+} else {
+  files = [...walk("src"), ...walk("scripts")].filter((f) => /\.(ts|tsx|mjs|css|json)$/.test(f) && !f.endsWith("check-content.mjs"));
+}
 
 const problems = [];
-for (const b of new Set(campaignBrands)) if (!inGroups.has(b)) problems.push(`campaigns.ts brand "${b}" is missing from brands.ts`);
-for (const b of tier1) if (!inGroups.has(b)) problems.push(`tier1 brand "${b}" is not in any category group`);
-// The @coachpetersing social accounts are not linked anywhere. The domain, email, and Cal.com stay.
-const socialRe = /(instagram\.com|tiktok\.com\/@|youtube\.com\/@)coachpetersing/i;
-const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => (d.isDirectory() ? walk(`${dir}/${d.name}`) : [`${dir}/${d.name}`]));
-for (const f of walk("src")) {
-  if (socialRe.test(fs.readFileSync(f, "utf8"))) problems.push(`@coachpetersing social link found in ${f}`);
-}
-// Wording Peter has ruled out: "ten years as Director", "Fortune 500", and wrap-up punchlines.
-const banned = [/cal\.com\/coachpetersing\/intro/i, /years as Director/i, /Fortune 500/i, /learned how to teach/i, /that['’]s where I/i, /that['’]s how I/i];
-for (const f of walk("src")) {
+for (const f of files) {
   const text = fs.readFileSync(f, "utf8");
-  for (const re of banned) if (re.test(text)) problems.push(`banned phrase ${re} found in ${f}`);
-}
-for (const f of fs.readdirSync("src/content")) {
-  if (fs.readFileSync(`src/content/${f}`, "utf8").includes("—")) problems.push(`em dash found in src/content/${f}`);
+  for (const r of rules) {
+    const m = text.match(r.re);
+    if (m) {
+      const line = text.slice(0, m.index).split("\n").length;
+      problems.push(`${r.name} in ${f}${built ? "" : `:${line}`}`);
+    }
+  }
 }
 
 if (problems.length) {
   console.error("content check failed:\n  " + problems.join("\n  "));
   process.exit(1);
 }
-console.log(`content check: ${new Set(campaignBrands).size} campaign brands, ${tier1.length} tier1, ${inGroups.size} brands total, all good`);
+console.log(`content check (${built ? "built output" : "source"}): ${files.length} files, all good`);

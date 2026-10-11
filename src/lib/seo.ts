@@ -1,27 +1,30 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
 
-export const homeTitle = "Coach Peter Sing: Content coaching for creators, actors, and small businesses";
+export const homeTitle = "Peter Sing | Content coaching for creators, actors and businesses";
 export const homeDescription =
-  "Peter Sing has made comedy videos with his family as The Sing Family since 2019 and has worked with brands like Coca-Cola, Walmart, Disney, and Dove. He offers one-on-one content coaching for creators, actors, and small businesses.";
+  "15 spots. Send me your videos. Get back what to cut, what to fix, and what to make next. Orange County, CA and online.";
 
-export function pageMeta(title: string, description: string, path: string): Metadata {
+export function pageMeta(title: string, description: string, path: string, opts: { noindex?: boolean } = {}): Metadata {
   const url = `${site.url}${path}`;
+  const full = `${title} | ${site.name}`;
   return {
-    title: `${title} | ${site.name}`,
+    title: full,
     description,
     alternates: { canonical: url },
-    openGraph: { title: `${title} | ${site.name}`, description, url, type: "website" },
-    twitter: { card: "summary_large_image", title: `${title} | ${site.name}`, description },
+    openGraph: { title: full, description, url, type: "website" },
+    twitter: { card: "summary_large_image", title: full, description },
+    ...(opts.noindex ? { robots: { index: false, follow: false } } : {}),
   };
 }
 
 export const descriptions = {
-  work: "Brand campaigns from The Sing Family with Coca-Cola, Wonka x IHOP, Charmin, Disney, and others.",
-  coaching: "1:1 content coaching from $150, small-group workshops in Orange County and online, and help for small businesses that want to post more consistently.",
-  brands: "Work with Peter Sing on creator partnerships with The Sing Family, campaign consulting, speaking, or team training.",
-  about: "Peter Sing runs The Sing Family with his wife Elena, spent ten years at PwC, and is a SAG-AFTRA actor. He coaches creators, actors, and business owners from Orange County, CA.",
-  contact: "Email Peter Sing, book a call, or send a note. He replies within two days.",
-  thanks: "Your message is in. Peter replies within two days.",
-  privacy: "What coachpetersing.com collects and what it does with it, in plain English.",
+  tryouts: "Try out for one of 15 spots. Send one video and what you want fixed. Two minutes.",
+  terms: "Subscription terms for the coaching roster: plans, monthly renewal, how to cancel online, and the first-month refund.",
+  privacy: "What coachpetersing.com collects, who processes it, and how to ask for it to be deleted.",
+  brands: "Sponsored content from The Sing Family and help running creator campaigns for brands and agencies.",
+  welcome: "Welcome to the roster.",
+  submit: "Send work for a review or a brief.",
+  cancel: "Cancel your coaching plan online.",
+  unsubscribe: "Leave the Tryouts list.",
 };

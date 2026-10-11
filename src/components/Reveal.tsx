@@ -3,18 +3,10 @@
 import { useEffect, useRef, type ReactNode } from "react";
 
 /**
- * Fades content in when it scrolls into view. The hidden state only applies once
- * the inline script in layout.tsx adds `js` to <html>, so with JavaScript off everything is visible.
+ * Fades content in once when it scrolls into view. Hidden only after the inline script in
+ * layout.tsx adds `js` to <html>, so with JavaScript off (or reduced motion) everything is visible.
  */
-export default function Reveal({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
-}) {
+export default function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -26,13 +18,13 @@ export default function Reveal({
           io.disconnect();
         }
       },
-      { rootMargin: "-60px 0px" },
+      { rootMargin: "0px 0px -60px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
   return (
-    <div ref={ref} data-reveal className={className} style={{ transitionDelay: `${delay}s` }}>
+    <div ref={ref} data-reveal className={className} style={delay ? { transitionDelay: `${delay}ms` } : undefined}>
       {children}
     </div>
   );

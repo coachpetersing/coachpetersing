@@ -2,98 +2,152 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Measured against Big Shoulders 800: Arial Bold is 1.35x wider, so scale it to 74%. */
+@font-face {
+  font-family: "Big Shoulders Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Roboto Bold"), local("Roboto-Bold"), local("Arial"), local("Roboto");
+  font-weight: 700 800;
+  size-adjust: 74%;
+  ascent-override: 134%;
+  descent-override: 28%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --forest-950: #0e1a12;
+  --forest-900: #13241a;
+  --forest-800: #1c3324;
+  --forest-600: #2f5a3e;
+  --tan-400: #c8a97e;
+  --tan-300: #d9c19d;
+  --cream-50: #f6f0e4;
+  --cream-200: #e6dcc8;
+  --ink: #0e1a12;
+  --muted: #a7b3a3;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 88px;
   }
-  /* Brand logos: rest at 75%, full on hover/focus/tap. Logo and name crossfade in the same cell. */
-  .brand-slot {
-    opacity: 0.75;
-    transition: opacity 200ms ease;
+  body {
+    @apply bg-forest-950 font-body text-base text-cream-50 antialiased lg:text-lg;
   }
-  .brand-swap .brand-logo,
-  .brand-swap .brand-name {
-    transition: opacity 200ms ease;
+  ::selection {
+    background: var(--tan-400);
+    color: var(--ink);
   }
-  .brand-swap .brand-name {
-    opacity: 0;
+  :focus-visible {
+    outline: 3px solid var(--tan-400);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
-  .brand-swap:focus-visible,
-  .brand-swap[data-active] {
-    opacity: 1;
+  .on-cream :focus-visible {
+    outline-color: var(--forest-600);
   }
-  .brand-swap:focus-visible .brand-logo,
-  .brand-swap[data-active] .brand-logo {
-    opacity: 0;
+  /* Big Shoulders at its display optical size. */
+  .font-display {
+    font-variation-settings: "opsz" 72;
   }
-  .brand-swap:focus-visible .brand-name,
-  .brand-swap[data-active] .brand-name {
-    opacity: 1;
+}
+
+@layer components {
+  .h1 {
+    @apply font-display text-[44px] font-extrabold uppercase leading-[0.95] tracking-tight sm:text-[64px] lg:text-[96px];
   }
-  @media (hover: hover) {
-    .brand-slot:hover {
-      opacity: 1;
-    }
-    .brand-swap:hover .brand-logo {
-      opacity: 0;
-    }
-    .brand-swap:hover .brand-name {
-      opacity: 1;
-    }
+  .h2 {
+    @apply font-display text-[32px] font-extrabold uppercase leading-[0.95] tracking-tight sm:text-[44px] lg:text-[56px];
   }
-  /* The marquee stops while someone is reading a name. */
+  .kicker {
+    @apply font-body text-sm font-semibold uppercase tracking-[0.16em];
+  }
+  .section {
+    @apply px-4 py-16 sm:px-6 lg:py-24;
+  }
+  .wrap {
+    @apply mx-auto w-full max-w-site;
+  }
+  .card {
+    @apply rounded-card border border-forest-800 bg-forest-900;
+  }
+  /* Light film grain on dark sections so the green doesn't look flat. */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 font-body text-base font-semibold transition duration-150 ease-out active:scale-[0.97];
+  }
+  .btn-primary {
+    @apply btn bg-tan-400 text-ink hover:bg-tan-300;
+  }
+  .btn-secondary {
+    @apply btn border border-cream-50/80 text-cream-50 hover:bg-cream-50 hover:text-ink;
+  }
+  .btn-dark {
+    @apply btn bg-ink text-cream-50 hover:bg-forest-800;
+  }
+  .link {
+    @apply underline decoration-1 underline-offset-4 hover:decoration-2;
+  }
+  .field {
+    @apply mt-2 block w-full rounded-xl border border-forest-800 bg-forest-900 px-4 py-3 font-body text-base text-cream-50 placeholder:text-muted/80 transition-colors duration-150 focus:border-tan-400 focus:outline-none focus:ring-2 focus:ring-tan-400/60 aria-[invalid=true]:border-[#F2A285];
+  }
+  .label {
+    @apply block font-body text-base font-medium text-cream-50;
+  }
+  .hint {
+    @apply mt-1 font-body text-sm text-muted;
+  }
+  .error {
+    @apply mt-2 font-body text-sm font-medium text-[#F2A285];
+  }
+}
+
+@layer utilities {
   .marquee-track:hover,
-  .marquee-track:focus-within,
-  .marquee-track:has([data-active]) {
+  .marquee-track:focus-within {
     animation-play-state: paused;
-  }
-  .hero-word {
-    animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-  @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translateY(22px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
   }
   html.js [data-reveal] {
     opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
   html.js [data-reveal].is-in {
     opacity: 1;
     transform: none;
   }
-  body {
-    @apply bg-cream font-body text-base text-offblack antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  ::selection {
-    background: #c9a96e;
-    color: #0e1a12;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  :focus-visible {
-    outline: 3px solid #c9a96e;
-    outline-offset: 3px;
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
   }
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-    html.js [data-reveal] {
-      opacity: 1;
-      transform: none;
-    }
+  .marquee-track {
+    animation: none !important;
   }
 }

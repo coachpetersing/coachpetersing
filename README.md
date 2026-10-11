@@ -1,157 +1,188 @@
 # coachpetersing.com
 
-Personal brand site for Peter Sing. Next.js 15 (App Router), TypeScript, Tailwind. Hosted on Vercel; every page prerenders to static HTML, and Vercel serves `next/image` in AVIF and WebP. No database, no CMS. Every word and number lives in `src/content/`.
+Peter Sing's coaching site: a 15-spot monthly coaching roster. People try out, Peter picks, and each pick gets a personal Stripe link that works once and expires after 72 hours.
+
+Next.js 15 (App Router), TypeScript, Tailwind, hosted on Vercel. Stripe for billing, Resend for email, a Google Sheet for records, Cal.com for Coaching calls. Every word, price and number on the site lives in `src/content/`.
 
 ## Run it
 
 ```bash
 npm install
+cp .env.example .env.local   # fill in what you have; the site runs with none of it
 npm run dev
 ```
 
-Open http://localhost:3000. To check the production build locally, run `npm run build` then `npm start`.
+Open http://localhost:3000. With no keys set, the roster falls back to `src/content/roster.ts`, forms still succeed, and the server log notes what it skipped.
 
-## Edit copy
+`npm run build` runs a content check before and after the build. It fails on an em dash, the old $150 or $250 prices, a free consult, or an old Cal.com booking link, in the source or in the built pages.
 
-All sentences are in [`src/content/copy.ts`](src/content/copy.ts), keyed by page. Change the text there and the page updates. Keep the voice plain. No em dashes, no exclamation points in body copy.
+## Edit content
 
-Headline numbers are in [`src/content/stats.ts`](src/content/stats.ts). The credibility row and audience snapshot are in the same file.
+| What | File |
+|---|---|
+| Every sentence on the site | [`src/content/copy.ts`](src/content/copy.ts) |
+| Prices, plan features, roster size, Coaching cap, stats, social counts, marquee brands, media | [`src/content/site.ts`](src/content/site.ts) |
+| Approved roster descriptions and the Stripe-down fallback | [`src/content/roster.ts`](src/content/roster.ts) |
+| Case studies | [`src/content/caseStudies.ts`](src/content/caseStudies.ts) |
+| FAQ | [`src/content/faq.ts`](src/content/faq.ts) |
+| Terms and Privacy | [`src/content/legal.ts`](src/content/legal.ts) |
+| Every email | [`src/content/emails.ts`](src/content/emails.ts) |
 
-Contact details, handles, and social URLs are in [`src/content/site.ts`](src/content/site.ts).
+Each file has a note at the top on how to edit it. Keep the voice plain and first person, and no em dashes.
 
-FAQ questions are in [`src/content/faq.ts`](src/content/faq.ts).
+**Prices** shown on the site come from `site.ts`. The amount charged comes from Stripe. Change both together, and give members 30 days' email notice (see the Terms).
 
-## Add a campaign
+### Swap in media
 
-Open [`src/content/campaigns.ts`](src/content/campaigns.ts) and add an object to the `campaigns` array:
+All in `media` in `src/content/site.ts`. Until a value is set, the site shows a placeholder.
 
-```ts
-{
-  brand: "Walmart",
-  name: "Back to school",
-  category: "Retail and delivery",     // must match a category in brands.ts
-  result: "8.2M views",                // the one headline number
-  detail: "120K likes, 900 comments",
-  year: 2025,
-  role: "Concept, script, production",
-  media: "/video/walmart-bts.mp4",     // or "TBD"
-  poster: "/images/walmart-bts.jpg",   // or "TBD"
-  url: "https://www.tiktok.com/@thesingfamily/video/...",  // or "TBD"
-  featured: false,                     // true puts it on the home page (first four featured show)
-}
-```
+- **Hero montage:** put `hero.mp4`, `hero.webm` and `hero-poster.jpg` in `public/video` and `public/images` (9:16, under 15 seconds), then set `media.hero`. Add a `.vtt` captions file if it has speech.
+- **Sample review:** set `media.sampleReview.src` to a Loom share link or an MP4 in `public/video`. For an MP4, add a poster (16:9) and a `.vtt` captions file.
+- **About photo:** replace `public/images/peter-portrait.jpg` or point `media.aboutPhoto` at a new file. Update `aboutPhotoAlt`.
+- **Case-study thumbnails:** TikTok thumbnails download automatically before each build. To use your own, put a 9:16 image in `public/images` and set `poster` in `caseStudies.ts`.
 
-Anything set to `"TBD"` is hidden or replaced with a styled color tile. Nothing breaks.
+## Running the roster
 
-To take a campaign off the site without losing its data, add `hidden: true`. It disappears from the Work grid and the home page, and the brand stays in the marquee and the brand wall. Remove the flag once a working link exists. The home page shows the `featured` campaigns that aren't hidden, and if fewer than four are left it fills the rest with the highest-view visible campaigns.
+### How the numbers work
 
-Repeat partners for the "Brands that came back" block are in the same file under `repeatPartners`.
+The roster count, open spots, Coaching availability and Opening Day spots left all come from Stripe:
 
-## Post embeds and posters
+- A spot is filled by any subscription on the Notes or Coaching price with status `active` or `past_due`.
+- Coaching is capped at 6 (`COACHING_CAP` in `site.ts`).
+- Opening Day spots left = the coupon's max redemptions minus times redeemed.
 
-Every campaign with a TikTok or Instagram `url` shows a poster with a play button. Clicking loads the platform's official embed inline, muted, nothing loads before the click. The card also links to the live post in a new tab.
+The site refreshes these every hour, and right away after every signing or cancellation. If Stripe can't be reached, it shows the numbers in `fallback` in `src/content/roster.ts`. Set those by hand if Stripe is ever down.
 
-TikTok posters are fetched automatically from TikTok's oEmbed endpoint by `scripts/fetch-posters.mjs`, which runs before every build and saves to `public/posters/`. Already-fetched posters are kept, so a flaky network never breaks a build. To re-download them all:
+### Making a pick
 
-```bash
-npm run posters -- --refresh
-```
+1. Open the Google Sheet, tab **Tryouts**. New tryouts come in with status `New`. You also get an email for each one.
+2. Pick someone. Run:
 
-Instagram has no public thumbnail endpoint, so Instagram cards show a color tile with the brand name until you add a `poster` image yourself. If an embed fails or stalls, the card shows an "Open on TikTok" or "Open on Instagram" button and the outbound link stays.
+   ```bash
+   npm run pick -- --email jane@example.com --plan notes
+   ```
 
-The source for campaign numbers and links is the Brand Deal Stats table in Notion (Projects > Brand Deal Stats). Years are derived from the post id.
+   Options:
+   - `--plan coaching` for the Coaching plan.
+   - `--note https://www.loom.com/share/...` adds your quick video note to the email.
+   - `--opening-day` prefills the OPENINGDAY code (only while Opening Day spots are left).
+   - `--force` sends even if every open spot already has a pick link out.
 
-## Add a video
+3. The script checks Stripe first. It refuses if the roster is full, if Coaching is full for a Coaching pick, or if every open spot already has a live pick link.
+4. It creates a single-use Stripe Payment Link (good for 72 hours), emails it to them ("You made the roster"), logs it in the **Picks** tab, marks their Tryouts row `Picked`, and prints the link.
+5. If they pay, the webhook takes it from there (see emails below) and their Picks row turns `Signed`.
+6. If they don't pay in 72 hours, the hourly cron turns the link off, emails them "Your spot passed", emails you to pick the next person, and marks the Picks row `Expired`.
 
-1. Export the MP4 from the original post. H.264, 9:16 or 1:1, under 4 MB. HandBrake with the "Fast 1080p30" preset and a lower quality slider gets there. Trim to the first 10 to 15 seconds if needed.
-2. Grab a still for the poster (a frame from the video, JPG, around 1080 px tall).
-3. Drop both in `public/video/` and `public/images/`.
-4. Set `media` and `poster` on the campaign in `campaigns.ts`.
+People you aren't picking this month: set their Tryouts row status to `Waiting`. On the 1st, if the roster is full, they get the "Still on the list" email. Anyone who unsubscribes is set to `Removed`.
 
-Videos are muted, lazy-loaded, and play on hover (desktop) or tap (mobile). They never autoplay with sound.
+### Approving a roster description
 
-## Add the headshot
+1. A new member fills out their intake on `/welcome`. If they chose "List me anonymously", the row lands in the **Intake** tab with status `Pending approval`, and you get an email with a ready-to-paste line.
+2. Check the wording: type, a few words of niche, a follower range, an optional region. No names, handles, exact numbers or cities.
+3. Add the line to `listed` in [`src/content/roster.ts`](src/content/roster.ts). Pick a jersey number from 1 to 15 that isn't used. Push.
+4. Set the Intake row to `Approved`.
+5. To take someone down, delete their line. Their spot still shows as a private "Roster member".
 
-The headshot is `public/images/peter-headshot.jpg`, set as `headshot` in `site.ts`. On large screens it fills the hero, anchored right, with a cream gradient on the left; below 1024 px it sits above the text, framed on the face. The About page uses the same file cropped to 4:5. To swap it, replace the file with one framed the same way: plain light background, face in the right third, at least 2000 px wide. The link preview image uses a separate crop at `src/app/og-headshot.jpg` (600 x 630); regenerate it if the photo changes. A second candid goes in `secondPhoto` and shows on the home page about teaser.
+### What each email does
 
-## Brand logos
+Member and tryout emails come from `EMAIL_FROM`. Replies go to `EMAIL_PETER`.
 
-The home marquee and the Work page wall show official logos from `public/logos/`, listed in [`src/content/logos.ts`](src/content/logos.ts). Brands without an entry there show as a text wordmark. Every logo is drawn as a single flat color by CSS (cream on dark, ink on light), so the files themselves can be any color.
+| Email | Sent when | Sent by |
+|---|---|---|
+| You're on the list | Someone submits a tryout | `/tryouts` form |
+| You made the roster | You run `npm run pick` | `scripts/pick.ts` |
+| Your spot passed | A pick link hits 72 hours unpaid | Hourly cron |
+| Welcome to the roster | Checkout completes. **Required by California law.** It has the price, renewal day, how to cancel, and the refund policy. Don't remove those. | Stripe webhook |
+| Your plan is canceled | A member schedules a cancel in the billing portal (it gives their last day). Also sent if a plan ends without a scheduled cancel, for example if you cancel it in Stripe. | Stripe webhook |
+| Still on the list | The 1st of each month, only if the roster is full, to Tryouts rows marked `Waiting`. Run it by hand with `npm run waitlist-email`. | Monthly cron |
 
-Rules for adding one: use the brand's own file. In order of preference: Simple Icons (CC0), an SVG the brand publishes (press page, media kit, or its own site header), then the brand's own PNG at the largest size it publishes. Never trace, redraw, upscale, or generate a logo, and never use third-party logo sites. Every brand on the site has a logo; prefer a version that spells out the name.
+Notes to you: every tryout, every intake, every work submission (with the count for the month, and `(OVER LIMIT)` when someone goes over), each new signing, each scheduled cancel, each spot that opens, each failed payment, and each expired pick.
 
-Full-color logos that rely on white lettering inside a colored shape turn into a solid blob as a single color. For those, the official file is converted to one color without changing any shape: white parts become see-through cut-outs (CeraVe, Clorox, Costco, Lego, Mattel, Charmin, Swiffer, Bounty, Luvs, Oreo, Cocomelon, Annie's, Lysol), or lighter colors become lighter tints (Tide, Minecraft, Puffs). The converters live outside the repo; ask for them if a logo changes.
+### Member pages
 
-To add a logo:
-1. Save the official file. For an SVG, crop its viewBox to the artwork and run it through SVGO (`npx svgo file.svg`). For a PNG, trim it to the artwork and keep it about 160px tall.
-2. Put it in `public/logos/<brand-slug>.svg` (or `.png`).
-3. Add a line to `logos.ts` with the file, its `ratio` (viewBox width / height), and where it came from. Add `scale` (for example `1.15`) if it looks too small or large next to the others.
+- `/welcome` is where Stripe sends people after paying. Intake form, a link to `/submit`, and for Coaching the Cal.com booking embed.
+- `/submit` is where members send work. It checks the email against active Stripe subscriptions. Over-limit submissions still go through and are flagged.
+- `/cancel` links to the Stripe billing portal login. It's linked in the footer of every page.
 
-Sub-brands without their own logo go in `logoParent` (Dove Men+Care and Baby Dove point to Dove). Once the parent has a logo, it shows once and the sub-brands drop out of the logo rows.
+## Setup
 
-## Add brands
+### 1. Stripe
 
-[`src/content/brands.ts`](src/content/brands.ts), grouped by category. Add the name to the right group. Text wordmarks only. Do not pull logos from the internet.
+1. Put a test key (`sk_test_...`) in `.env.local` and run `npm run stripe:setup`. It creates the Notes ($297) and Coaching ($697) monthly prices with lookup keys `notes_monthly` and `coaching_monthly`, the Opening Day coupon ($100 off for 3 months, 5 redemptions), and the `OPENINGDAY` promotion code. Copy the IDs it prints into `.env.local`.
+2. Dashboard steps (test mode, then again in live mode):
+   - **Settings > Business > Public details:** set the Terms of service URL to `https://coachpetersing.com/terms` and the Privacy URL to `/privacy`. Pick links require terms consent at checkout, which needs this.
+   - **Settings > Billing > Customer portal:** turn on cancel at end of billing period, update payment method, and invoice history. Turn **off** plan switching. Copy the **Login link** into `STRIPE_PORTAL_LOGIN_URL`.
+   - **Settings > Billing > Invoices > Default footer:** `Your plan renews monthly until you cancel. Cancel anytime at coachpetersing.com/cancel.`
+   - **Developers > Webhooks:** add `https://coachpetersing.com/api/stripe/webhook` with events `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`. Copy the signing secret into `STRIPE_WEBHOOK_SECRET`.
+3. For local webhook testing: `stripe listen --forward-to localhost:3000/api/stripe/webhook`.
 
-The `tier1` list in the same file sets the biggest names, in order. They make up the first row of the home marquee and lead the Work page wall. Everything else follows, grouped by category. A brand in `tier1` must also be in a category group.
+About the renewal checkbox: Stripe Payment Links have no checkbox field. The pick link uses a required dropdown with one option, "Yes, I understand", labeled `I understand this renews monthly at $297 until I cancel.` ($697 for Coaching; Opening Day picks show the discounted price and then the regular price). The customer can't pay without choosing it, so it works as a separate, affirmative consent to the renewal.
 
-`npm run build` runs a content check first. It fails if a campaign brand is missing from `brands.ts`, if a `tier1` brand isn't in a group, or if an em dash shows up in `src/content`. Run it alone with `npm run check`.
+### 2. Google Sheet
 
-## Swap a link
+1. Create a sheet called **Coaching Roster**.
+2. In Google Cloud, create a service account, enable the Google Sheets API, and download a JSON key.
+3. Share the sheet with the service account's `client_email` as an Editor.
+4. Put the JSON (or a base64 copy of it) in `GOOGLE_SERVICE_ACCOUNT_JSON` and the sheet ID in `GOOGLE_SHEET_ID`.
+5. Run `npm run sheet:setup`. It adds the tabs `Tryouts`, `Picks`, `Members`, `Intake`, `Submissions` and `Events` (used so a retried Stripe event isn't handled twice) with header rows.
 
-- Cal.com booking: every "Work with me" and "Book a session" button goes to `bookingPageUrl` in [`src/content/offers.ts`](src/content/offers.ts), which lists all sessions. Only the Coaching page links straight to a session: the 30 and 60 minute options use their own `bookingUrl`. The free 15-minute consult is not bookable; it's requested by email (subject "Free consult request") from the Coaching page, the home closing section, and the Contact page. The build fails if a link to the old `/intro` booking page comes back.
-- Formspree contact form: create a free form at formspree.io and copy the id from the endpoint (`https://formspree.io/f/<id>`). In Vercel, Project > Settings > Environment Variables, add `NEXT_PUBLIC_FORMSPREE_ID` with that id for Production and Preview, then redeploy. Locally, put it in `.env.local`. While it's unset, the Contact page hides the form and shows only the email and Book a session. The form submits in place and shows a confirmation without leaving the page.
-- "Work with me" buttons and "DM me" links: `workWithMeUrl` and `dmUrl` in `site.ts`. The @coachpetersing social accounts are deliberately not linked; the build fails if one of those URLs shows up in `src`.
-- Workshops: the button says "Ask about workshops" and goes to the Contact page.
-- Workshop date: set `nextDate` in `offers.ts`, for example `"Saturday, March 14"`.
-- Prices: set `priceUsd` to a number on an offer and it shows. Leave `null` to hide.
+If a Sheet write fails, the form still succeeds, you still get the email (with a note to add the row by hand), and the error is logged.
 
-## Pixels (optional)
+### 3. Resend
 
-Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_META_PIXEL_ID` or `NEXT_PUBLIC_TIKTOK_PIXEL_ID`. On Vercel, add the same variables under Project > Settings > Environment Variables. Blank means the pixel is not loaded. Vercel Web Analytics is on by default and needs no key once enabled in the Vercel project.
+Add the domain `coachpetersing.com` in Resend and add the SPF, DKIM and DMARC records it shows at Squarespace DNS. Don't touch the existing Google Workspace records (see "Point the domain" below). Put the API key in `RESEND_API_KEY`.
+
+### 4. Turnstile, cron, Cal.com
+
+- **Turnstile:** create a widget in Cloudflare for `coachpetersing.com`, then set `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY`. Leave them blank locally to skip the check.
+- **Cron:** set `CRON_SECRET` to a long random string. `vercel.json` schedules `/api/cron/expire-picks` hourly and `/api/cron/waitlist` at 10am Pacific on the 1st. Hourly crons need a Vercel Pro plan; on Hobby, change it to daily (`0 17 * * *`) and links expire within a day of their 72 hours.
+- **Cal.com:** create a private 45-minute event for Coaching members and put its URL in `NEXT_PUBLIC_CAL_COACHING_URL`.
+
+### 5. Vercel
+
+Add every variable from `.env.example` under Project > Settings > Environment Variables. Use Stripe test keys for Preview and live keys for Production. Turn on Web Analytics. Custom events: `tryout_click` (with `location`), `tryout_submit`, `sample_play`, `plan_view`, `faq_open`, `submit_work`, `cancel_click`.
+
+Spam protection on `/tryouts`: a honeypot field, Turnstile, and a 5-per-hour limit per IP. The IP limit lives in each server instance's memory, so it stops bursts but isn't exact across instances. Turnstile does the heavy lifting.
+
+## Test run (Stripe test mode)
+
+1. Submit a tryout at `/tryouts`.
+2. `npm run pick -- --email you+test@example.com --plan notes --opening-day`.
+3. Open the link from the email. Pay with card `4242 4242 4242 4242`, check both consents.
+4. You land on `/welcome`, get the welcome email, and the roster shows 1 signed.
+5. Fill out the intake, then send something from `/submit`.
+6. Cancel from `/cancel` through the portal. You get the canceled email with your last day.
+7. Cancel the subscription immediately in the Stripe Dashboard. The roster drops back.
+8. Try the same pick link again: it's used up. Run a pick and wait (or edit its `expires_at` metadata to the past) and call the cron: `curl -H "Authorization: Bearer $CRON_SECRET" localhost:3000/api/cron/expire-picks`.
 
 ## Deploy
 
-1. Push the repo to GitHub. The production branch is `main`.
-2. In Vercel, New Project > import the repo. Framework is detected as Next.js. No settings to change.
-3. Every push to `main` deploys to production. Pull requests get a preview URL.
-4. In the Vercel project, turn on Web Analytics under the Analytics tab.
+1. The production branch is `main`. Every push deploys. Pull requests get a preview URL.
+2. Old pages (`/work`, `/coaching`, `/about`, `/contact`, `/thanks`) 301 to the home page.
 
 ## Point the domain
 
 DNS is at Squarespace Domains: account.squarespace.com > Domains > coachpetersing.com > DNS. Google Workspace email is set up there.
 
-Do not delete or edit any MX, SPF (TXT starting `v=spf1`), DKIM (TXT on `google._domainkey`), or `google-site-verification` records.
+Do not delete or edit any MX, SPF (TXT starting `v=spf1`), DKIM (TXT on `google._domainkey`), or `google-site-verification` records. When you add Resend, add its records alongside them; if Resend asks for an SPF include, add it to the existing `v=spf1` record instead of creating a second one.
 
-1. In Vercel, Project > Settings > Domains. Add `coachpetersing.com` and `www.coachpetersing.com`. Set `coachpetersing.com` as the primary and let `www` redirect to it. Vercel shows the A record and CNAME values to add.
+1. In Vercel, Project > Settings > Domains. Add `coachpetersing.com` and `www.coachpetersing.com`. Set `coachpetersing.com` as the primary and let `www` redirect to it.
 2. In Squarespace DNS, delete only these five records:
    - A `@` 198.185.159.144
    - A `@` 198.185.159.145
    - A `@` 198.49.23.144
    - A `@` 198.49.23.145
    - CNAME `www` ext-sq.squarespace.com
-3. Add the records Vercel shows. Typically:
-   - A `@` 76.76.21.21
-   - CNAME `www` cname.vercel-dns.com
-   Use whatever values the Vercel Domains page shows for this project if they differ.
-4. Save. Back in Vercel the domain shows as pending, then valid. Allow up to an hour. SSL is automatic.
-5. Send a test email to contact@coachpetersing.com afterwards to confirm mail still works.
-
-## Checks before shipping
-
-- `npm run build` passes with no warnings about images or metadata.
-- Lighthouse mobile: Performance 85+ on pages with video, 90+ elsewhere. Accessibility 95+. SEO 95+.
-- Every page has its own title and description (see `src/lib/seo.ts`).
-- No em dashes in any copy: `grep -rnP "\x{2014}" src/content` returns nothing.
-- Site works with JavaScript off: nav, links, mailto, and the form all function.
+3. Add the records Vercel shows. Typically A `@` 76.76.21.21 and CNAME `www` cname.vercel-dns.com.
+4. Allow up to an hour. SSL is automatic. Send a test email to contact@coachpetersing.com afterwards to confirm mail still works.
 
 ## Layout
 
 ```
-src/app/            pages, layout, sitemap, robots, OG image
-src/components/     UI pieces, each one file
-src/content/        site.ts copy.ts stats.ts brands.ts campaigns.ts offers.ts faq.ts
-src/lib/            seo.ts links.ts
-public/images/      headshot, posters, stills
-public/video/       campaign clips (mp4)
+src/app/            pages, API routes (Stripe webhook, crons), sitemap, robots, OG image
+src/components/     UI pieces
+src/content/        everything editable
+src/lib/            Stripe, roster math, Sheets, email, spam checks, dates
+scripts/            pick, waitlist email, Stripe and Sheet setup, content check, posters
+public/             images, posters, video
 ```
