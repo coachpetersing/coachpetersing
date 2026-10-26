@@ -115,8 +115,45 @@
 }
 
 @layer utilities {
+  /* Brand logos: rest at 80%, full on hover/focus/tap. Logo and name crossfade in the same cell. */
+  .brand-slot {
+    opacity: 0.8;
+    transition: opacity 200ms ease;
+  }
+  .brand-swap .brand-logo,
+  .brand-swap .brand-name {
+    transition: opacity 200ms ease;
+  }
+  .brand-swap .brand-name {
+    opacity: 0;
+  }
+  .brand-swap:focus-visible,
+  .brand-swap[data-active] {
+    opacity: 1;
+  }
+  .brand-swap:focus-visible .brand-logo,
+  .brand-swap[data-active] .brand-logo {
+    opacity: 0;
+  }
+  .brand-swap:focus-visible .brand-name,
+  .brand-swap[data-active] .brand-name {
+    opacity: 1;
+  }
+  @media (hover: hover) {
+    .brand-slot:hover {
+      opacity: 1;
+    }
+    .brand-swap:hover .brand-logo {
+      opacity: 0;
+    }
+    .brand-swap:hover .brand-name {
+      opacity: 1;
+    }
+  }
+  /* The marquee stops while someone is reading a name. */
   .marquee-track:hover,
-  .marquee-track:focus-within {
+  .marquee-track:focus-within,
+  .marquee-track:has([data-active]) {
     animation-play-state: paused;
   }
   html.js [data-reveal] {
@@ -149,6 +186,11 @@
   }
   .marquee-track {
     animation: none !important;
+  }
+  .brand-swap .brand-logo,
+  .brand-swap .brand-name,
+  .brand-slot {
+    transition: none !important;
   }
 }
 

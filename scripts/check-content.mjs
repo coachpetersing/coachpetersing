@@ -19,7 +19,6 @@ const rules = [
   { name: "the 20% rate (private, never on the site)", re: /20%/ },
   { name: "free consult", re: /free (15[\s‑-]minute )?consult/i },
   { name: "old Cal.com booking page", re: /cal\.com\/coachpetersing\b(?!\/)/i },
-  { name: '"Work with me" button', re: /Work with me/ },
 ];
 
 let files;

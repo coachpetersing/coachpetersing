@@ -19,14 +19,14 @@ export const terms: { title: string; updated: string; intro: string; sections: S
       h: "What's for sale",
       p: [
         "Call: $299, one time. One 60-minute coaching call on video, booked after payment, plus a written one-pager afterwards.",
-        "Two calls a month: $499 a month. Two 60-minute calls in each billing month, each with a one-pager.",
-        "Four calls a month: $899 a month. Four 60-minute calls in each billing month, each with a one-pager.",
+        "Gold: $499 a month. Two 60-minute calls in each billing month, each with a one-pager.",
+        "Diamond: $899 a month. Four 60-minute calls in each billing month, each with a one-pager.",
       ],
     },
     {
       h: "Partner codes",
       p: [
-        "Some people who refer clients to me have a code. Entered before checkout, it takes $50 off a Call, $100 off the first month of Two calls a month, or $200 off the first month of Four calls a month. The discount shows at checkout before you pay.",
+        "Some people who refer clients to me have a code. Entered before checkout, it takes $50 off a Call, $100 off the first month of Gold, or $200 off the first month of Diamond. The discount shows at checkout before you pay.",
         "It applies to your first purchase only and once per person. If you've bought from me before, or cancel and come back, the code doesn't apply, and I may charge the difference or cancel the discounted order.",
         "The person whose code you used is paid a referral fee by me. It doesn't change your price.",
       ],

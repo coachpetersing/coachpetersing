@@ -25,7 +25,12 @@ export type ProductId = "call" | "two" | "four";
 
 export type Product = {
   id: ProductId;
+  /** Short name on the card and in Stripe ("Call", "Gold", "Diamond"). */
   name: string;
+  /** What the tier is, under the name. */
+  tagline: string;
+  /** Used in emails and the terms, where the tier name alone isn't enough. */
+  longName: string;
   price: number;
   /** "once" is a one-time payment. "month" renews monthly until canceled. */
   per: "once" | "month";
@@ -47,10 +52,12 @@ export const products: Record<ProductId, Product> = {
   call: {
     id: "call",
     name: "Call",
+    tagline: "One hour",
+    longName: "a Call",
     price: 299,
     per: "once",
     callsPerMonth: 1,
-    lines: ["One hour, one on one, on video.", "Bring videos, a pitch, a brand contract, your page. We fix what we can in 60 minutes.", "A one-pager after the call: what we decided and what you're doing next."],
+    lines: ["One hour, one on one, on video.", "Bring videos, a pitch, a brand contract, your page. We work on what matters most.", "A one-pager from me after the call."],
     cta: "Book a call",
     lookupKey: "call_once_299",
     referralOff: 50,
@@ -58,11 +65,13 @@ export const products: Record<ProductId, Product> = {
   },
   two: {
     id: "two",
-    name: "Two calls a month",
+    name: "Gold",
+    tagline: "Two calls a month",
+    longName: "Gold (two calls a month)",
     price: 499,
     per: "month",
     callsPerMonth: 2,
-    lines: ["Two hours a month.", "Same two slots every month if you want them.", "A one-pager after every call."],
+    lines: ["Two hours a month, one on one.", "Keep the same two slots every month if you like.", "A one-pager after every call."],
     cta: "Start",
     lookupKey: "two_calls_monthly_499",
     referralOff: 100,
@@ -70,11 +79,13 @@ export const products: Record<ProductId, Product> = {
   },
   four: {
     id: "four",
-    name: "Four calls a month",
+    name: "Diamond",
+    tagline: "Four calls a month",
+    longName: "Diamond (four calls a month)",
     price: 899,
     per: "month",
     callsPerMonth: 4,
-    lines: ["An hour a week.", "For people building something and posting every week.", "A one-pager after every call."],
+    lines: ["An hour a week, one on one.", "Best if you post every week and want someone in it with you.", "A one-pager after every call."],
     cta: "Start",
     lookupKey: "four_calls_monthly_899",
     referralOff: 200,
@@ -113,12 +124,6 @@ export const stats = [
  * a placeholder. Nothing breaks either way.
  */
 export const media = {
-  hero: {
-    mp4: null as string | null, // e.g. "/video/hero.mp4" (9:16, under 15 seconds)
-    webm: null as string | null, // e.g. "/video/hero.webm"
-    poster: null as string | null, // e.g. "/images/hero-poster.jpg"
-    captions: null as string | null, // e.g. "/video/hero.vtt"
-  },
   /** A real one-pager to show as the sample, e.g. "/sample-one-pager.pdf" in /public. */
   samplePdf: null as string | null,
   aboutPhoto: "/images/peter-portrait.jpg" as string | null,

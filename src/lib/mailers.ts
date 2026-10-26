@@ -18,7 +18,7 @@ export async function sendPlanWelcome(to: string, o: { product: ProductId; renew
   const p = products[o.product];
   const { html, text } = render(
     emails.planWelcome.body,
-    { plan: p.name, price: p.price, day: o.renewDay, calls: p.callsPerMonth, cancelUrl: `${site()}/cancel`, bookUrl: `${site()}/book` },
+    { plan: p.longName, price: p.price, day: o.renewDay, calls: p.callsPerMonth, cancelUrl: `${site()}/cancel`, bookUrl: `${site()}/book` },
     { footer: billingFooter() },
   );
   await sendEmail({ to, subject: emails.planWelcome.subject, html, text });

@@ -42,6 +42,10 @@ const config: Config = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        marqueeReverse: {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
         rise: {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "none" },
@@ -49,6 +53,7 @@ const config: Config = {
       },
       animation: {
         marquee: "marquee 70s linear infinite",
+        "marquee-reverse": "marqueeReverse 70s linear infinite",
         rise: "rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both",
       },
     },

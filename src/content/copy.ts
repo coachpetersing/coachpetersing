@@ -9,7 +9,7 @@
 export const copy = {
   nav: {
     links: [
-      { href: "/#prices", label: "Prices" },
+      { href: "/#prices", label: "Work with me" },
       { href: "/#how", label: "How it works" },
       { href: "/#work", label: "Work" },
       { href: "/#faq", label: "FAQ" },
@@ -25,13 +25,12 @@ export const copy = {
   },
   hero: {
     kicker: "CONTENT COACHING",
-    h1: "Your videos aren't bad. They're forgettable.",
-    sub: "Book an hour. Bring the videos, the pitch, the page, whatever isn't working. You leave with a one-pager of what to do next.",
+    h1: "Make videos people actually watch.",
+    sub: "Book an hour. Bring the videos, the pitch, the page, whatever isn't working yet. You leave with a clear next step and a one-pager from me.",
     primary: "Book a call",
-    secondary: "Monthly plans",
-    videoAlt: "A short montage of Sing Family brand videos",
-    placeholder: "Montage coming soon",
+    secondary: "Monthly options",
   },
+  logos: { heading: "Brands I've made content for" },
   /** The partner code box under the prices, and what shows once a code is in. */
   partner: {
     line: "Referred by a partner? Enter their code here for your first-month discount.",
@@ -47,45 +46,45 @@ export const copy = {
     fine: "First purchase only, new customers only, one code per customer.",
   },
   prices: {
-    h2: "Prices",
-    sub: "Pick how much of my time you want. Everything is paid up front.",
+    h2: "Work with me",
+    sub: "Three ways to do it. Pay up front, book right after.",
     once: "one time",
     perMonth: "/month",
-    fine: "Calls are one hour on video. Every call ends with a one-pager from me: what we decided and what you're doing next. Reschedule up to 24 hours before. Inside 24 hours, the call is used. Monthly calls don't roll over. Cancel a plan anytime from the link at the bottom of every page, and you keep your calls through the month you paid for.",
+    fine: "Calls are one hour on video, and you get a one-pager from me after each one. Reschedule up to 24 hours before. Inside 24 hours, the call is used. Monthly calls don't roll over. Cancel a plan anytime from the link at the bottom of every page, and you keep your calls through the month you paid for.",
   },
   how: {
     h2: "How it works",
     steps: [
-      { title: "Pay.", body: "Pick one above. Card, Apple Pay, whatever Stripe takes." },
-      { title: "Book.", body: "A calendar right after checkout. Pick your hour." },
-      { title: "Do the work.", body: "You get a one-pager after the call. I coach. You make it. Filming and editing are on you." },
+      { title: "Pick one.", body: "Card or Apple Pay through Stripe. Takes a minute." },
+      { title: "Book your hour.", body: "A calendar comes up right after checkout. Pick a time that works." },
+      { title: "Make it.", body: "You get a one-pager from me after the call. The filming and editing stay with you; I make sure they count." },
     ],
   },
   onePager: {
     h2: "What a call looks like",
-    body: "An hour, and a one-pager in your inbox afterwards. Three parts, in this order.",
+    body: "An hour on video, one on one. Three parts.",
     parts: [
-      { label: "KEEP", text: "what's working, so you don't fix it by accident" },
-      { label: "FIX", text: "the three things killing it, biggest first" },
-      { label: "NEXT", text: "what you're making before we talk again, and the first line of it" },
+      { label: "LOOK", text: "We go through what you've posted and what you brought." },
+      { label: "WORK", text: "The thing you came for: the video, the pitch, the page, the deal." },
+      { label: "ONE-PAGER", text: "Afterwards you get a one-pager from me, so nothing from the hour gets lost." },
     ],
-    caption: "First ten minutes I look at what you've posted. Last ten minutes you leave with the list.",
-    sample: "Read a real one",
-    placeholder: "Sample coming soon.",
+    caption: "Same shape every time, whether it's your first call or your fortieth.",
+    sample: "See an example",
+    placeholder: "Example coming soon.",
   },
   who: {
     h2: "Who this is for",
     creators: {
       title: "Creators",
-      body: "You post. You've made some money from it or you're close. You want brand deals, and you want them to pay more. I've done 150 of them from your side of the table.",
+      body: "You post, and you want it to turn into paid work. Brand deals, better ones, more of them. I've done 150 of them from the creator side, so I know what brands look for and what they pay.",
     },
     owners: {
       title: "Business owners",
-      body: "A dentist, a gym, a restaurant, a shop. Your page has 400 followers and brings nobody in. I'll tell you what to film, and the person at your front desk can shoot it on a phone.",
+      body: "A dentist, a gym, a restaurant, a shop. You want your page to bring people in. I'll tell you what to film, who should be in it, and how to keep it simple enough that your team can shoot it on a phone.",
     },
     notFor: {
-      title: "Not for you if",
-      items: ["You want someone to film and edit for you.", "You want a course you'll never finish.", "You want to go viral by Friday.", "You get defensive about notes."],
+      title: "What I don't do",
+      items: ["Film or edit for you.", "Run your accounts.", "Promise views or followers. What I can promise is that you'll know exactly what to do next."],
     },
     brands: { text: "Brand or agency? That's a different thing.", link: { href: "/brands", label: "Go here" } },
   },
@@ -100,7 +99,7 @@ export const copy = {
   faq: { h2: "Questions" },
   final: {
     h2: "Book an hour.",
-    sub: "${call}. Bring what isn't working. Leave with a plan.",
+    sub: "${call}. Bring what isn't working yet. Leave with a plan.",
     cta: "Book a call",
   },
   footer: {
@@ -179,7 +178,7 @@ export const copy = {
       h2: "How it works",
       steps: [
         { title: "You get a code.", body: "Your first name, usually. It's also a link and a QR code if you want them." },
-        { title: "They use it.", body: "They type it under the prices on the site or come in through your link. Their first payment is discounted: $50 off a call, $100 off the first month of two calls, $200 off the first month of four." },
+        { title: "They use it.", body: "They type it under the prices on the site or come in through your link. Their first payment is discounted: $50 off a call, $100 off the first month of Gold, $200 off the first month of Diamond." },
         { title: "You get paid.", body: "$30 when a call is booked. 15% of the full plan price every month they stay, for 12 months. Paid on the 1st, 30 days after the payment clears, $100 minimum or it rolls to next month." },
       ],
     },
@@ -187,7 +186,7 @@ export const copy = {
       h2: "The fine print",
       items: [
         "The discount is for a customer's first purchase only, and only once per person. Someone who cancels and comes back with a new code doesn't get it twice.",
-        "Your cut is 15% of full price, including the discounted first month. Two calls a month pays you $75 a month. Four pays $135.",
+        "Your cut is 15% of full price, including the discounted first month. Gold pays you $75 a month. Diamond pays $135.",
         "Payouts stop when the client cancels, and after 12 months on any one client. A refund pulls that payout back.",
         "Paid monthly on the 1st through Melio, with a 30-day hold. Under $100 rolls over to the next month.",
         "You're an independent referral partner, not an employee. No quotas, no hours, no exclusivity. You'll get a 1099 if you cross the IRS threshold.",

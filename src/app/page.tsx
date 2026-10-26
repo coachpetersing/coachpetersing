@@ -2,7 +2,7 @@ import Image from "next/image";
 import { copy, fill } from "@/content/copy";
 import { products, productIds, stats, media, site } from "@/content/site";
 import { caseStudies, repeatLine } from "@/content/caseStudies";
-import HeroVideo from "@/components/HeroVideo";
+import BrandMarquee from "@/components/BrandMarquee";
 import StatCounter from "@/components/StatCounter";
 import Faq from "@/components/Faq";
 import CaseStudyCard from "@/components/CaseStudyCard";
@@ -61,35 +61,33 @@ export default function Home() {
       <JsonLd />
 
       {/* Hero */}
-      <section id="hero" className="grain section pt-8 lg:pt-16">
-        <div className="wrap grid items-center gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
-          <div>
-            <p className="kicker text-tan-400">{copy.hero.kicker}</p>
-            <h1 className="h1 mt-4">{copy.hero.h1}</h1>
-            <p className="mt-6 max-w-[60ch] text-cream-50/90">{copy.hero.sub}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <BuyButton product="call" location="hero">
-                {copy.hero.primary}, {money(products.call.price)}
-              </BuyButton>
-              <a href="#prices" className="btn-secondary">
-                {copy.hero.secondary}
-              </a>
-            </div>
-          </div>
-          <div className="animate-rise [animation-delay:150ms]">
-            <HeroVideo />
+      <section id="hero" className="grain section pt-10 lg:pt-20">
+        <div className="wrap">
+          <p className="kicker text-tan-400">{copy.hero.kicker}</p>
+          <h1 className="h1 mt-4 max-w-[12ch]">{copy.hero.h1}</h1>
+          <p className="mt-6 max-w-[58ch] text-lg text-cream-50/90">{copy.hero.sub}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <BuyButton product="call" location="hero">
+              {copy.hero.primary}, {money(products.call.price)}
+            </BuyButton>
+            <a href="#prices" className="btn-secondary">
+              {copy.hero.secondary}
+            </a>
           </div>
         </div>
       </section>
 
       {/* Stats */}
-      <section aria-label="By the numbers" className="grain px-4 pb-16 sm:px-6">
+      <section aria-label="By the numbers" className="grain px-4 pb-14 sm:px-6">
         <div className="wrap grid grid-cols-2 gap-x-6 gap-y-10 border-t border-forest-800 pt-12 lg:grid-cols-4">
           {stats.map((s) => (
             <StatCounter key={s.label} {...s} />
           ))}
         </div>
       </section>
+
+      {/* Brand logos */}
+      <BrandMarquee />
 
       {/* Prices */}
       <section id="prices" aria-labelledby="prices-h" className="on-cream section bg-cream-50 text-ink">
@@ -105,7 +103,8 @@ export default function Home() {
                 const p = products[id];
                 return (
                   <article key={id} className="flex flex-col rounded-card border border-cream-200 bg-white/60 p-6 sm:p-8">
-                    <h3 className="font-display text-4xl font-extrabold uppercase leading-none">{p.name}</h3>
+                    <h3 className="font-display text-5xl font-extrabold uppercase leading-none">{p.name}</h3>
+                    <p className="kicker mt-2 text-forest-600">{p.tagline}</p>
                     <p className="mt-5 flex items-baseline gap-1">
                       <span className="font-display text-[56px] font-extrabold leading-none">{money(p.price)}</span>
                       <span className="text-base text-ink/80">{p.per === "month" ? copy.prices.perMonth : copy.prices.once}</span>
@@ -211,7 +210,7 @@ export default function Home() {
                 {copy.who.notFor.items.map((item) => (
                   <li key={item} className="flex gap-3 text-lg">
                     <span aria-hidden="true" className="font-bold text-forest-600">
-                      ✕
+                      ·
                     </span>
                     <span>{item}</span>
                   </li>
