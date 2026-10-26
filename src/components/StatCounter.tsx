@@ -42,11 +42,11 @@ export default function StatCounter({ value, decimals, suffix, label }: { value:
         {suffix} {label}
       </p>
       <div aria-hidden="true">
-        <p className="font-display text-[56px] font-extrabold leading-none tabular-nums text-tan-400 sm:text-[72px]">
+        <p className="font-display text-[48px] font-extrabold leading-none tabular-nums text-tan-400 sm:text-[60px] xl:text-[72px]">
           {display}
           {suffix}
         </p>
-        <p className="mt-2 text-base text-muted">{label}</p>
+        <p className="mt-2 text-sm font-medium uppercase tracking-[0.12em] text-muted sm:text-base sm:normal-case sm:tracking-normal">{label}</p>
       </div>
     </div>
   );

@@ -60,29 +60,29 @@ export default function Home() {
     <>
       <JsonLd />
 
-      {/* Hero */}
-      <section id="hero" className="grain section pt-10 lg:pt-20">
-        <div className="wrap">
-          <p className="kicker text-tan-400">{copy.hero.kicker}</p>
-          <h1 className="h1 mt-4 max-w-[12ch]">{copy.hero.h1}</h1>
-          <p className="mt-6 max-w-[58ch] text-lg text-cream-50/90">{copy.hero.sub}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <BuyButton product="call" location="hero">
-              {copy.hero.primary}, {money(products.call.price)}
-            </BuyButton>
-            <a href="#prices" className="btn-secondary">
-              {copy.hero.secondary}
-            </a>
+      {/* Hero: words on the left, the numbers on the right, logos right underneath. */}
+      <section id="hero" className="grain section pb-10 pt-10 lg:pb-14 lg:pt-16">
+        <div className="wrap grid items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+          <div>
+            <p className="kicker text-tan-400">{copy.hero.kicker}</p>
+            <h1 className="h1 mt-4 max-w-[12ch]">{copy.hero.h1}</h1>
+            <p className="mt-6 max-w-[52ch] text-lg text-cream-50/90">{copy.hero.sub}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <BuyButton product="call" location="hero">
+                {copy.hero.primary}, {money(products.call.price)}
+              </BuyButton>
+              <a href="#prices" className="btn-secondary">
+                {copy.hero.secondary}
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section aria-label="By the numbers" className="grain px-4 pb-14 sm:px-6">
-        <div className="wrap grid grid-cols-2 gap-x-6 gap-y-10 border-t border-forest-800 pt-12 lg:grid-cols-4">
-          {stats.map((s) => (
-            <StatCounter key={s.label} {...s} />
-          ))}
+          <ul aria-label="By the numbers" className="grid grid-cols-2 gap-3 sm:gap-4">
+            {stats.map((s, i) => (
+              <li key={s.label} className={`card animate-rise p-5 sm:p-6 lg:p-7 ${i % 3 === 0 ? "bg-forest-800/60" : ""}`} style={{ animationDelay: `${120 + i * 70}ms` }}>
+                <StatCounter {...s} />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

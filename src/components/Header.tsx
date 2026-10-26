@@ -78,7 +78,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <Link href="/#prices" className="btn-primary min-h-[44px] px-5">
+          <Link href="/#prices" className="btn-primary min-h-[44px] whitespace-nowrap px-4 sm:px-5">
             {copy.nav.cta}
           </Link>
           <button

@@ -38,7 +38,7 @@ function Row({ brands, reverse }: { brands: string[]; reverse?: boolean }) {
  */
 export default function BrandMarquee() {
   return (
-    <section aria-label={copy.logos.heading} className="grain border-y border-forest-800 py-12 sm:py-16">
+    <section aria-label={copy.logos.heading} className="grain border-b border-forest-800 pb-12 pt-4 sm:pb-16 sm:pt-6">
       <p className="kicker wrap mb-8 px-4 text-muted sm:px-6">{copy.logos.heading}</p>
       <div className="space-y-8 md:space-y-10">
         <Row brands={foldSubBrands(tier1)} />
