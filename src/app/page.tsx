@@ -136,6 +136,23 @@ export default function Home() {
         </ViewTracker>
       </section>
 
+      {/* About */}
+      <section aria-labelledby="about-h" className="grain section">
+        <div className="wrap grid items-center gap-10 md:grid-cols-[2fr_3fr] lg:gap-16">
+          {media.aboutPhoto && (
+            <div className="relative aspect-[4/5] overflow-hidden rounded-card border border-forest-800">
+              <Image src={media.aboutPhoto} alt={media.aboutPhotoAlt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover object-top" />
+            </div>
+          )}
+          <div>
+            <h2 id="about-h" className="h2">
+              {copy.about.h2}
+            </h2>
+            <p className="mt-6 max-w-[60ch] text-lg text-cream-50/90">{copy.about.body}</p>
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section id="how" aria-labelledby="how-h" className="grain section">
         <div className="wrap">
@@ -239,23 +256,6 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-10 text-lg text-cream-50/90">{repeatLine}</p>
-        </div>
-      </section>
-
-      {/* About */}
-      <section aria-labelledby="about-h" className="grain section">
-        <div className="wrap grid items-center gap-10 md:grid-cols-[2fr_3fr] lg:gap-16">
-          {media.aboutPhoto && (
-            <div className="relative aspect-[4/5] overflow-hidden rounded-card border border-forest-800">
-              <Image src={media.aboutPhoto} alt={media.aboutPhotoAlt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover object-top" />
-            </div>
-          )}
-          <div>
-            <h2 id="about-h" className="h2">
-              {copy.about.h2}
-            </h2>
-            <p className="mt-6 max-w-[60ch] text-lg text-cream-50/90">{copy.about.body}</p>
-          </div>
         </div>
       </section>
 
