@@ -1,5 +1,5 @@
 /**
- * Creates the tabs in the "Coaching Roster" Google Sheet and writes the header rows.
+ * Creates the tabs in the "Coaching Sales" Google Sheet and writes the header rows.
  * Safe to run again. Share the sheet with the service account email first.
  *
  *   npm run sheet:setup

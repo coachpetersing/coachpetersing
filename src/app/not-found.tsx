@@ -14,8 +14,8 @@ export default function NotFound() {
           <Link href="/" className="btn-secondary">
             {copy.notFound.home}
           </Link>
-          <Link href="/tryouts" className="btn-primary">
-            {copy.notFound.tryout}
+          <Link href="/#prices" className="btn-primary">
+            {copy.notFound.prices}
           </Link>
         </div>
       </div>

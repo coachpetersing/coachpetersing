@@ -2,16 +2,13 @@ import crypto from "node:crypto";
 import { env } from "./env";
 
 /**
- * Google Sheet "Coaching Roster", written with a service account (no SDK).
+ * Google Sheet "Coaching Sales", written with a service account (no SDK).
  * Column order for each tab is defined here; `npm run sheet:setup` writes these headers.
  * Share the sheet with the service account's client_email as an Editor.
  */
 export const TABS = {
-  Tryouts: ["Timestamp", "Status", "Name", "Email", "What you do", "Handle or website", "Platform", "Follower range", "Video", "Help with", "Plan", "Found me via"],
-  Picks: ["Timestamp", "Status", "Email", "Plan", "Opening Day", "Link", "Link ID", "Expires at", "Note"],
-  Members: ["Timestamp", "Email", "Name", "Plan", "Price", "Opening Day", "Customer ID", "Subscription ID", "Renews on day"],
-  Intake: ["Timestamp", "Status", "Name", "Email", "Handles", "3-month goal", "Last 3 videos", "Anything else", "Listing", "Type", "Niche", "Follower range", "Region", "Preview"],
-  Submissions: ["Timestamp", "Month", "Email", "Plan", "Type", "Links", "Look at", "Goal", "Product or idea", "Can't do", "Count this month", "Limit"],
+  Sales: ["Timestamp", "Kind", "Product", "Amount", "Email", "Name", "Partner code", "Partner name", "Month #", "Payout", "Flags", "Stripe ID", "Customer ID", "Subscription ID"],
+  Partners: ["Timestamp", "Status", "Name", "Email", "Handle", "Who they'd send", "Code"],
   Events: ["Timestamp", "Stripe event ID", "Type"],
 } as const;
 

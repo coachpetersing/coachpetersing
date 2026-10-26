@@ -3,28 +3,9 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { copy, fill } from "@/content/copy";
-import TryoutLink from "./TryoutLink";
+import { copy } from "@/content/copy";
 
-export function pillText(open: number) {
-  if (open <= 0) return copy.nav.pillFull;
-  if (open === 1) return copy.nav.pillOpenOne;
-  return fill(copy.nav.pillOpen, { open });
-}
-
-function StatusPill({ open, className = "" }: { open: number; className?: string }) {
-  return (
-    <Link
-      href="/#roster"
-      className={`inline-flex min-h-[40px] items-center gap-2 rounded-full border border-forest-800 px-4 text-sm font-medium text-cream-50 transition-colors hover:border-tan-400 ${className}`}
-    >
-      <span aria-hidden="true" className={`h-2 w-2 rounded-full ${open > 0 ? "bg-tan-400" : "bg-muted"}`} />
-      {pillText(open)}
-    </Link>
-  );
-}
-
-export default function Header({ open }: { open: number }) {
+export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
   const pathname = usePathname();
@@ -74,7 +55,7 @@ export default function Header({ open }: { open: number }) {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-200 ${
+      className={`sticky top-0 z-50 border-b transition-colors duration-200 print:hidden ${
         solid ? "border-forest-800 bg-forest-950" : "border-transparent bg-forest-950/0"
       }`}
     >
@@ -97,10 +78,9 @@ export default function Header({ open }: { open: number }) {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <StatusPill open={open} className="hidden md:inline-flex" />
-          <TryoutLink location="header" className="btn-primary min-h-[44px] px-5">
+          <Link href="/#prices" className="btn-primary min-h-[44px] px-5">
             {copy.nav.cta}
-          </TryoutLink>
+          </Link>
           <button
             ref={toggleRef}
             type="button"
@@ -138,9 +118,6 @@ export default function Header({ open }: { open: number }) {
               ))}
             </ul>
           </nav>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <StatusPill open={open} />
-          </div>
         </div>
       )}
     </header>

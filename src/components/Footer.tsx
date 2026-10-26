@@ -5,7 +5,7 @@ import { copy } from "@/content/copy";
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="grain border-t border-forest-800 bg-forest-950 px-4 pb-12 pt-16 sm:px-6">
+    <footer className="grain border-t border-forest-800 bg-forest-950 px-4 pb-12 pt-16 print:hidden sm:px-6">
       <div className="wrap grid gap-10 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="font-display text-4xl font-extrabold uppercase leading-none tracking-tight">

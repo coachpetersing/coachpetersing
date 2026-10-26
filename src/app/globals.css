@@ -151,3 +151,16 @@
     animation: none !important;
   }
 }
+
+@media print {
+  @page {
+    size: 6in 4in;
+    margin: 0;
+  }
+  body {
+    background: #fff;
+  }
+  .grain::before {
+    display: none;
+  }
+}

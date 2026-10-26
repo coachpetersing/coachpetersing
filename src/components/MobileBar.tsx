@@ -3,41 +3,43 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { copy, fill } from "@/content/copy";
-import TryoutLink from "./TryoutLink";
+import { products } from "@/content/site";
 
-// No tryout prompt on the tryout form itself or on member pages.
-const HIDDEN_ON = ["/tryouts", "/welcome", "/submit", "/cancel", "/unsubscribe"];
+// Only on the home page, and never over the printable card or the pages after checkout.
+const SHOW_ON = ["/"];
 
-/** Mobile only. Appears once the hero is out of view, hides while the footer is on screen. */
-export default function MobileBar({ open, size }: { open: number; size: number }) {
+/** Mobile only. Appears once the hero is out of view, hides while the footer or the prices are on screen. */
+export default function MobileBar() {
   const pathname = usePathname();
   const [pastHero, setPastHero] = useState(false);
-  const [footerVisible, setFooterVisible] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     const hero = document.getElementById("hero");
     const footer = document.querySelector("footer");
+    const prices = document.getElementById("prices");
     const observers: IntersectionObserver[] = [];
     if (hero) {
       const io = new IntersectionObserver(([e]) => setPastHero(!e.isIntersecting && e.boundingClientRect.top < 0));
       io.observe(hero);
       observers.push(io);
-    } else {
-      const onScroll = () => setPastHero(window.scrollY > 400);
-      onScroll();
-      window.addEventListener("scroll", onScroll, { passive: true });
-      observers.push({ disconnect: () => window.removeEventListener("scroll", onScroll) } as IntersectionObserver);
     }
-    if (footer) {
-      const io = new IntersectionObserver(([e]) => setFooterVisible(e.isIntersecting));
-      io.observe(footer);
+    const visible = new Set<Element>();
+    for (const el of [footer, prices]) {
+      if (!el) continue;
+      const io = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) visible.add(e.target);
+        else visible.delete(e.target);
+        setHidden(visible.size > 0);
+      });
+      io.observe(el);
       observers.push(io);
     }
     return () => observers.forEach((o) => o.disconnect());
   }, [pathname]);
 
-  if (HIDDEN_ON.some((p) => pathname.startsWith(p))) return null;
-  const show = pastHero && !footerVisible;
+  if (!SHOW_ON.includes(pathname)) return null;
+  const show = pastHero && !hidden;
 
   return (
     <div
@@ -48,10 +50,10 @@ export default function MobileBar({ open, size }: { open: number; size: number }
       inert={!show}
     >
       <div className="flex items-center justify-between gap-3">
-        <p className="text-sm font-medium">{open > 0 ? fill(copy.mobileBar.open, { open, size }) : copy.mobileBar.full}</p>
-        <TryoutLink location="mobile_bar" className="btn-primary min-h-[44px] shrink-0 px-5">
+        <p className="text-sm font-medium">{fill(copy.mobileBar.text, { call: products.call.price })}</p>
+        <a href="#prices" className="btn-primary min-h-[44px] shrink-0 px-5">
           {copy.mobileBar.cta}
-        </TryoutLink>
+        </a>
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ import "./globals.css";
 import { site } from "@/content/site";
 import { copy } from "@/content/copy";
 import { homeTitle, homeDescription } from "@/lib/seo";
-import { getRoster } from "@/lib/roster";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileBar from "@/components/MobileBar";
@@ -54,8 +53,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const roster = await getRoster();
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
       <head>
@@ -69,12 +67,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         >
           {copy.nav.skip}
         </a>
-        <Header open={roster.open} />
+        <Header />
         <main id="main" tabIndex={-1} className="focus:outline-none">
           {children}
         </main>
         <Footer />
-        <MobileBar open={roster.open} size={roster.size} />
+        <MobileBar />
         <Analytics />
       </body>
     </html>

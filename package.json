@@ -12,14 +12,15 @@
     "prebuild": "node scripts/check-content.mjs && node scripts/fetch-posters.mjs",
     "check": "node scripts/check-content.mjs",
     "posters": "node scripts/fetch-posters.mjs",
-    "pick": "tsx --env-file-if-exists=.env.local scripts/pick.ts",
-    "waitlist-email": "tsx --env-file-if-exists=.env.local scripts/waitlist-email.ts",
     "stripe:setup": "tsx --env-file-if-exists=.env.local scripts/stripe-setup.ts",
-    "sheet:setup": "tsx --env-file-if-exists=.env.local scripts/sheet-setup.ts"
+    "sheet:setup": "tsx --env-file-if-exists=.env.local scripts/sheet-setup.ts",
+    "payouts": "tsx --env-file-if-exists=.env.local scripts/payouts.ts"
   },
   "dependencies": {
+    "@types/qrcode": "^1.5.5",
     "@vercel/analytics": "^1.5.0",
     "next": "^15.5.0",
+    "qrcode": "^1.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "resend": "^6.32.1",

@@ -1,7 +1,7 @@
 // Fails the build if banned content shows up.
 //   node scripts/check-content.mjs           checks src/ and scripts/ (runs before build)
 //   node scripts/check-content.mjs --built   checks the built HTML and RSC output (runs after build)
-// Rules: no em dashes, no old prices or free consult, no old Cal.com "Work with me" booking links.
+// Rules: no em dashes, no roster or tryout wording, no old plan prices or free consult, no bare Cal.com link.
 import fs from "node:fs";
 import path from "node:path";
 
@@ -13,10 +13,12 @@ const walk = (dir) =>
 
 const rules = [
   { name: "em dash", re: /—/ },
-  { name: "old $150 price", re: /\$150\b/ },
-  { name: "old $250 price", re: /\$250\b/ },
+  { name: "old roster wording", re: /\b(roster|tryouts?|try out)\b/i },
+  { name: "old plan price", re: /\$(297|697|197|597|1,000|500)\b/ },
+  { name: "old video review product", re: /video review/i },
+  { name: "the 20% rate (private, never on the site)", re: /20%/ },
   { name: "free consult", re: /free (15[\s‑-]minute )?consult/i },
-  { name: "old Cal.com booking page", re: /cal\.com\/coachpetersing(?!\/[\w-]*coaching)/i },
+  { name: "old Cal.com booking page", re: /cal\.com\/coachpetersing\b(?!\/)/i },
   { name: '"Work with me" button', re: /Work with me/ },
 ];
 

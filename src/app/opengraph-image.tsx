@@ -1,14 +1,12 @@
 import { ImageResponse } from "next/og";
-import { getRoster } from "@/lib/roster";
-import { heroStatus } from "@/lib/status";
+import { products } from "@/content/site";
 
-export const revalidate = 3600;
-export const alt = "Peter Sing coaching roster";
+export const dynamic = "force-static";
+export const alt = "Peter Sing, content coaching";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default async function OpenGraphImage() {
-  const roster = await getRoster();
+export default function OpenGraphImage() {
   return new ImageResponse(
     (
       <div
@@ -29,14 +27,14 @@ export default async function OpenGraphImage() {
           <div style={{ fontSize: 22, letterSpacing: 4, color: "#C8A97E" }}>COACHING</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 24, letterSpacing: 4, color: "#C8A97E" }}>COACHING ROSTER · 15 SPOTS</div>
-          <div style={{ fontSize: 76, fontWeight: 800, lineHeight: 1, letterSpacing: -2, marginTop: 18, textTransform: "uppercase", maxWidth: 1000 }}>
-            Notes on your content from someone who makes it for a living.
+          <div style={{ fontSize: 24, letterSpacing: 4, color: "#C8A97E" }}>CONTENT COACHING</div>
+          <div style={{ fontSize: 80, fontWeight: 800, lineHeight: 1, letterSpacing: -2, marginTop: 18, textTransform: "uppercase", maxWidth: 1000 }}>
+            Your videos aren&apos;t bad. They&apos;re forgettable.
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28 }}>
-          <div style={{ width: 16, height: 16, borderRadius: 8, background: roster.open > 0 ? "#C8A97E" : "#A7B3A3" }} />
-          <div>{heroStatus(roster)}</div>
+          <div style={{ width: 16, height: 16, borderRadius: 8, background: "#C8A97E" }} />
+          <div>{`Book an hour, $${products.call.price}. Bring what isn't working. Leave with a plan.`}</div>
         </div>
       </div>
     ),

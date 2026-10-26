@@ -2,138 +2,96 @@
  * Every sentence on the site, grouped by page and section.
  *
  * How to edit: change the text in quotes and save. Words inside {curly braces} are filled in
- * from live roster data, so leave those as they are. Voice: first person, plain, short
- * sentences. No hype words, no em dashes.
+ * from live data (prices, names), so leave those as they are. Voice: first person, plain,
+ * short sentences. No hype words, no em dashes.
  */
 
 export const copy = {
   nav: {
     links: [
+      { href: "/#prices", label: "Prices" },
       { href: "/#how", label: "How it works" },
-      { href: "/#plans", label: "Plans" },
-      { href: "/#roster", label: "Roster" },
       { href: "/#work", label: "Work" },
       { href: "/#faq", label: "FAQ" },
     ],
-    cta: "Try out",
+    cta: "Book a call",
     menu: "Menu",
     close: "Close menu",
     skip: "Skip to content",
-    pillOpen: "{open} spots open",
-    pillOpenOne: "1 spot open",
-    pillFull: "Roster full",
   },
   mobileBar: {
-    open: "{open} of {size} spots open",
-    full: "Roster full. Join Tryouts.",
-    cta: "Try out",
+    text: "An hour with me is ${call}.",
+    cta: "Book",
   },
   hero: {
-    kicker: "COACHING · 15 SPOTS",
+    kicker: "CONTENT COACHING",
     h1: "Your videos aren't bad. They're forgettable.",
-    sub: "Send me what you make. I tell you what to cut, what to fix, and what to make next. You do the work.",
-    primary: "Try out",
-    secondary: "See a review",
-    statusOpen: "{open} of {size} spots open.",
-    statusFull: "Roster full. Next spots open {draftDay}.",
-    statusOpeningDay: "All {size} spots open.",
+    sub: "Book an hour. Bring the videos, the pitch, the page, whatever isn't working. You leave with a one-pager of what to do next.",
+    primary: "Book a call",
+    secondary: "Monthly plans",
     videoAlt: "A short montage of Sing Family brand videos",
     placeholder: "Montage coming soon",
   },
-  marquee: { label: "Made videos for" },
+  /** The partner code box under the prices, and what shows once a code is in. */
+  partner: {
+    line: "Referred by a partner? Enter their code here for your first-month discount.",
+    label: "Partner code",
+    placeholder: "Code",
+    apply: "Apply",
+    applying: "Checking",
+    applied: "{name}'s code is in. The first payment shows the discount below and at checkout.",
+    unknown: "That code isn't one I recognize. Check the spelling, or skip it.",
+    remove: "Remove code",
+    cardOnce: "${price} with {name}'s code",
+    cardFirstMonth: "${price} first month with {name}'s code, then ${full}",
+    fine: "First purchase only, new customers only, one code per customer.",
+  },
+  prices: {
+    h2: "Prices",
+    sub: "Pick how much of my time you want. Everything is paid up front.",
+    once: "one time",
+    perMonth: "/month",
+    fine: "Calls are one hour on video. Every call ends with a one-pager from me: what we decided and what you're doing next. Reschedule up to 24 hours before. Inside 24 hours, the call is used. Monthly calls don't roll over. Cancel a plan anytime from the link at the bottom of every page, and you keep your calls through the month you paid for.",
+  },
   how: {
     h2: "How it works",
     steps: [
-      {
-        title: "Try out.",
-        body: "Your page, one video, and what you want fixed. Two minutes.",
-      },
-      {
-        title: "Get picked.",
-        body: "When a spot opens, I email you a link. It's good for 72 hours.",
-      },
-      {
-        title: "Send work.",
-        body: "Get notes back. Repeat.",
-      },
+      { title: "Pay.", body: "Pick one above. Card, Apple Pay, whatever Stripe takes." },
+      { title: "Book.", body: "A calendar right after checkout. Pick your hour." },
+      { title: "Do the work.", body: "You get a one-pager after the call. I coach. You make it. Filming and editing are on you." },
     ],
   },
-  what: {
-    h2: "What you get",
-    review: {
-      title: "Review",
-      body: "Send a video, posted or not. Or your profile, or a brand pitch. You get a screen recording of what I'd change and why.",
-      parts: [
-        { label: "KEEP", text: "what works" },
-        { label: "FIX", text: "the one thing that matters most" },
-        { label: "TRY", text: "what to test next" },
-      ],
-      caption: "Every review ends this way.",
+  onePager: {
+    h2: "What a call looks like",
+    body: "An hour, and a one-pager in your inbox afterwards. Three parts, in this order.",
+    parts: [
+      { label: "KEEP", text: "what's working, so you don't fix it by accident" },
+      { label: "FIX", text: "the three things killing it, biggest first" },
+      { label: "NEXT", text: "what you're making before we talk again, and the first line of it" },
+    ],
+    caption: "First ten minutes I look at what you've posted. Last ten minutes you leave with the list.",
+    sample: "Read a real one",
+    placeholder: "Sample coming soon.",
+  },
+  who: {
+    h2: "Who this is for",
+    creators: {
+      title: "Creators",
+      body: "You post. You've made some money from it or you're close. You want brand deals, and you want them to pay more. I've done 150 of them from your side of the table.",
     },
-    brief: {
-      title: "Brief",
-      body: "Don't know what to make? I tell you. Hook, shots, ending. You film it, then send it back for a review.",
+    owners: {
+      title: "Business owners",
+      body: "A dentist, a gym, a restaurant, a shop. Your page has 400 followers and brings nobody in. I'll tell you what to film, and the person at your front desk can shoot it on a phone.",
     },
-    turnaround: { title: "Turnaround", body: "In by Tuesday. Back by Friday." },
-    audit: { title: "First review", body: "A full audit of your page and your last 3 videos." },
-    coach: "I coach. I don't produce. Filming and editing are on you.",
-  },
-  sample: {
-    h2: "What a review looks like",
-    sub: "A real review of one of our videos. Same thing you'd get.",
-    play: "Play the sample review",
-    placeholder: "Sample review coming soon.",
-    title: "Sample review by Peter Sing",
-  },
-  plans: {
-    h2: "Two plans",
-    sub: "Month to month. Cancel online.",
-    perMonth: "/month",
-    goodFor: "For",
-    coachingBadge: "{cap} spots",
-    coachingFull: "Coaching full",
-    cta: "Try out",
-    openingDay:
-      "Opening Day: the first {spots} on the roster pay ${notesOD} or ${coachingOD} a month for {months} months, then regular price. {left} of {spots} left.",
-    fine: "Plans renew monthly until you cancel. Cancel anytime from your billing page or the Cancel link at the bottom of every page. Your first review is a full audit of your page. If it isn't useful, tell me within 7 days of getting it and I'll refund the month. Unused reviews and briefs don't roll over.",
-  },
-  roster: {
-    h2: "The roster",
-    sub: "15 spots. That's it. The numbers are real. Names stay private.",
-    status: "{filled} of {size} signed · {open} open · Updated {updated}",
-    private: "Roster member",
-    open: "Open",
-    openHover: "Try out →",
-    openLabel: "Spot {n} is open. Try out.",
-    draft: "Full? Open spots get filled on the 1st of each month.",
-    cta: "Try out",
-    planTag: { notes: "Notes", coaching: "Coaching" },
+    notFor: {
+      title: "Not for you if",
+      items: ["You want someone to film and edit for you.", "You want a course you'll never finish.", "You want to go viral by Friday.", "You get defensive about notes."],
+    },
+    brands: { text: "Brand or agency? That's a different thing.", link: { href: "/brands", label: "Go here" } },
   },
   work: {
     h2: "The work",
     view: "See the post",
-  },
-  who: {
-    h2: "Who it's for",
-    notFor: {
-      title: "Not for you if",
-      items: [
-        "You want someone to film and edit for you.",
-        "You want a course you'll never finish.",
-        "You want to go viral by Friday.",
-        "You get defensive about notes.",
-      ],
-    },
-    isFor: {
-      title: "For you if",
-      items: [
-        "You post every week, or you're ready to.",
-        "You'll actually use the notes.",
-        "You're fine hearing your video is too long.",
-        "Creator, actor or business owner. Doesn't matter.",
-      ],
-    },
-    brands: { text: "Brand or agency? That's a different thing.", link: { href: "/brands", label: "Go here" } },
   },
   about: {
     h2: "About",
@@ -141,74 +99,114 @@ export const copy = {
   },
   faq: { h2: "Questions" },
   final: {
-    h2: "15 spots.",
-    sub: "Two minutes. I read every one.",
-    cta: "Try out",
+    h2: "Book an hour.",
+    sub: "${call}. Bring what isn't working. Leave with a plan.",
+    cta: "Book a call",
   },
   footer: {
     contact: "Contact",
     follow: "The Sing Family",
     links: [
+      { href: "/book", label: "Book a call (members)" },
+      { href: "/cancel", label: "Cancel your plan" },
       { href: "/terms", label: "Terms" },
       { href: "/privacy", label: "Privacy" },
-      { href: "/cancel", label: "Cancel your plan" },
       { href: "/brands", label: "Brands" },
     ],
   },
 
-  tryouts: {
-    h1: "Try out",
-    intro:
-      "Your page, one video, and what you want fixed. I read every one. You'll get an email either way.",
-    success: "You're on the list. Check your email for a confirmation.",
-    submit: "Send it",
-    sending: "Sending",
-    consent: "OK to email me about my tryout.",
+  checkout: {
+    unavailable: "Checkout isn't set up yet. Email contact@coachpetersing.com and I'll send you a link.",
   },
+
   welcome: {
-    h1: "You're on the roster.",
-    h1Named: "You're on the roster, {name}.",
-    sub: "Three things.",
-    step1: "Fill out your intake",
-    step2: "Bookmark your submit page",
-    step2Body: "Send videos and ask for briefs here. In by Tuesday, back by Friday.",
-    step2Button: "Go to your submit page",
-    step3: "Book your first call",
-    step3Fallback: "Open the booking page",
-    footer: "Your first review is a full audit of your page and last 3 videos. Within 5 days.",
-    listingNote: "I'll check the wording before it goes up. You can ask me to take it down anytime.",
-    intakeSuccess: "Got it. I'll read this before your first review.",
+    // A one-time call
+    callH1: "Paid. Pick a time.",
+    callH1Named: "Paid. Pick a time, {name}.",
+    callSub: "One hour on video. Reschedule up to 24 hours before from the confirmation email.",
+    // A monthly plan
+    planH1: "You're in.",
+    planH1Named: "You're in, {name}.",
+    planSub: "Book your calls below. Bookmark this page, or use the Book a call link at the bottom of the site anytime.",
+    planNote: "Your plan renews monthly until you cancel. The welcome email has the details. Cancel anytime from the link at the bottom of every page.",
+    bookFallback: "Open the booking page",
+    noCal: "I'll email you a booking link within the hour.",
+    // No session found
+    plainH1: "Thanks.",
+    plainSub: "If you just paid, check your email. Your receipt has everything you need.",
   },
-  submit: {
-    h1: "Send your work",
-    intro: "Members only. Use the email you signed up with.",
-    notFound: "I can't find an active plan for that email. Reply to your welcome email and I'll sort it out.",
-    success: "Got it. If it's in by Tuesday night, you'll have it by Friday.",
-    overLimit: "Heads up, that's more than your plan includes this month. I'll reach out.",
+  book: {
+    h1: "Book a call",
+    intro: "For people on a monthly plan. Enter the email you signed up with.",
+    button: "Show my calendar",
+    checking: "Checking",
+    notFound: "I can't find an active plan for that email. If you're on one, reply to your welcome email and I'll sort it out. Not on one? Prices are on the home page.",
+    oneOff: "Paid for a single call and lost the link? Reply to your receipt and I'll resend it.",
+    note: "Your plan includes {calls} calls a month. Book them whenever. They don't roll over.",
   },
   cancel: {
     h1: "Cancel your plan",
-    body: "Click below, enter your email, cancel. You keep access until the end of the month you paid for.",
+    body: "Click below, enter your email, cancel. You keep your calls through the month you paid for.",
     button: "Go to billing",
     fine: "Trouble? Email contact@coachpetersing.com and I'll cancel it for you.",
   },
   brands: {
     h1: "Brands and agencies",
-    body: "The roster is for individuals. For brands and agencies I do two things: sponsored content with The Sing Family, and help running creator campaigns, brief to post.",
+    body: "Coaching is for individuals and small businesses. For brands and agencies I do two things: sponsored content with The Sing Family, and help running creator campaigns, brief to post.",
     cta: "Email me",
+  },
+  qr: {
+    h1: "Partner codes",
+    intro: "Pick a partner to get their QR code, link and printable card. Add partners in src/content/partners.ts.",
+    none: "No partners yet. Add one in src/content/partners.ts and push.",
+    unknown: "That code isn't in the partners list.",
+    link: "Link",
+    download: "Download QR (SVG)",
+    downloadPng: "Download QR (PNG)",
+    card: "Open the printable card",
+    back: "All partners",
+  },
+  card: {
+    scan: "Scan to book",
+    line: "Use code {code} when you book. Your first call is ${price} instead of ${full}.",
+    stats: ["150+ paid brand deals", "1B+ views", "Orange County, CA"],
+    tagline: "Content coaching for creators and business owners.",
+  },
+  partners: {
+    h1: "Send me creators.",
+    sub: "$30 per call, 15% of every month they stay subscribed, for a year.",
+    how: {
+      h2: "How it works",
+      steps: [
+        { title: "You get a code.", body: "Your first name, usually. It's also a link and a QR code if you want them." },
+        { title: "They use it.", body: "They type it under the prices on the site or come in through your link. Their first payment is discounted: $50 off a call, $100 off the first month of two calls, $200 off the first month of four." },
+        { title: "You get paid.", body: "$30 when a call is booked. 15% of the full plan price every month they stay, for 12 months. Paid on the 1st, 30 days after the payment clears, $100 minimum or it rolls to next month." },
+      ],
+    },
+    terms: {
+      h2: "The fine print",
+      items: [
+        "The discount is for a customer's first purchase only, and only once per person. Someone who cancels and comes back with a new code doesn't get it twice.",
+        "Your cut is 15% of full price, including the discounted first month. Two calls a month pays you $75 a month. Four pays $135.",
+        "Payouts stop when the client cancels, and after 12 months on any one client. A refund pulls that payout back.",
+        "Paid monthly on the 1st through Melio, with a 30-day hold. Under $100 rolls over to the next month.",
+        "You're an independent referral partner, not an employee. No quotas, no hours, no exclusivity. You'll get a 1099 if you cross the IRS threshold.",
+        "Say it's a referral. If you post about it, disclose it.",
+      ],
+    },
+    form: {
+      h2: "Want a code?",
+      intro: "Tell me who you are and who you'd send. I'll reply within a couple of days.",
+      submit: "Send",
+      sending: "Sending",
+      success: "Got it. I'll be in touch.",
+    },
   },
   notFound: {
     h1: "Nothing here.",
     body: "That page doesn't exist. It may have moved when the site changed.",
     home: "Back home",
-    tryout: "Try out",
-  },
-  unsubscribe: {
-    h1: "Leave the Tryouts list",
-    body: "Click below and I'll stop sending you roster updates. You can always try out again later.",
-    button: "Take me off the list",
-    done: "Done. You're off the list.",
-    invalid: "That link doesn't look right. Email contact@coachpetersing.com and I'll take you off.",
+    prices: "See prices",
   },
 };
 
