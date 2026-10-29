@@ -20,7 +20,7 @@ cp .env.example .env.local   # fill in what you have; the site runs with none of
 npm run dev
 ```
 
-Open http://localhost:3000. With no Stripe key, the buy buttons fall back to an email link.
+Open http://localhost:3000. With no Stripe key (or if Stripe errors), the Call button goes straight to the Cal.com page where people pick a time and pay in one step (`site.bookCallUrl`, currently cal.com/coachpetersing/60min at $299), and the plan buttons land on a short "checkout is down" page that offers a single call.
 
 `npm run build` runs a content check before and after the build. It fails on an em dash, any leftover roster or video-review wording, the old prices, the private 20% rate, or a bare Cal.com link.
 
