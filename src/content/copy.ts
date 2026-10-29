@@ -109,6 +109,20 @@ export const copy = {
     body: "Peter Sing. Comedy videos with my wife Elena as The Sing Family since 2019. Actor, SAG-AFTRA. Before this, 10 years in learning and development at PwC. Orange County, CA.",
   },
   faq: { h2: "Questions" },
+  /** The "Ask me a question" button under the FAQ, and the link to it under the prices. */
+  ask: {
+    h3: "Still have a question?",
+    sub: "Ask me here. I'll reply by email.",
+    pricesLink: "Have a question first? Ask me.",
+    button: "Ask me a question",
+    email: "Your email",
+    message: "Your question",
+    submit: "Send",
+    sending: "Sending",
+    cancel: "Cancel",
+    done: "Got it. I'll reply by email.",
+    failed: "Something broke on my end and it didn't go through. Email contact@coachpetersing.com instead.",
+  },
   final: {
     h2: "Book an hour.",
     sub: "${call}. Bring what isn't working yet. Leave with a plan.",

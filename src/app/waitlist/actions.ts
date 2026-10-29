@@ -7,28 +7,7 @@ import { emails } from "@/content/emails";
 import { copy, fill } from "@/content/copy";
 import { products, site } from "@/content/site";
 import { isProductId } from "@/lib/stripe";
-
-/**
- * Backup delivery to Peter through Formspree, used only when the email service (Resend) isn't set
- * up or fails, so a sign-up is never lost.
- */
-async function formspree(fields: Record<string, string>) {
-  const id = process.env.NEXT_PUBLIC_FORMSPREE_ID;
-  if (!id) return false;
-  try {
-    const res = await fetch(`https://formspree.io/f/${id}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(fields),
-      cache: "no-store",
-    });
-    if (!res.ok) console.error("[waitlist] Formspree returned", res.status);
-    return res.ok;
-  } catch (err) {
-    console.error("[waitlist] Formspree failed:", (err as Error).message);
-    return false;
-  }
-}
+import { formspree } from "@/lib/formspree";
 
 /** A monthly-plan waitlist sign-up. Peter gets the note; the person gets a copy of what they sent. */
 export async function joinWaitlist(product: string, _prev: FormState, fd: FormData): Promise<FormState> {

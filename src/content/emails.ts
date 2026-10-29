@@ -54,6 +54,7 @@ export const emails = {
     returning: " RETURNING CUSTOMER USED A CODE",
     partnerApply: "Partner application: {name}",
     waitlist: "Waitlist: {plan} from {email}",
+    question: "Question from {email}",
     cancelScheduled: "Cancel scheduled: {email}, {product}",
     planEnded: "Plan ended: {email}, {product}",
     paymentFailed: "Payment failed: {email}",

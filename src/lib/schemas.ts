@@ -14,6 +14,11 @@ export const waitlistSchema = z.object({
   message: z.string().trim().min(1, "Tell me a little about what you want help with.").max(2000),
 });
 
+export const contactSchema = z.object({
+  email,
+  message: z.string().trim().min(1, "Type your question.").max(2000),
+});
+
 export type FieldErrors = Record<string, string>;
 
 export type FormState = {

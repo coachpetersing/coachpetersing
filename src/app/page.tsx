@@ -8,6 +8,7 @@ import Faq from "@/components/Faq";
 import CaseStudyCard from "@/components/CaseStudyCard";
 import BuyButton from "@/components/BuyButton";
 import Waitlist from "@/components/Waitlist";
+import AskForm from "@/components/AskForm";
 import PartnerNote from "@/components/PartnerNote";
 import PartnerCode from "@/components/PartnerCode";
 import ViewTracker from "@/components/ViewTracker";
@@ -136,6 +137,11 @@ export default function Home() {
               })}
             </div>
             <p className="mt-8 max-w-[80ch] text-sm text-ink/85">{copy.prices.fine}</p>
+            <p className="mt-3 text-sm">
+              <a href="#ask" className="link font-semibold">
+                {copy.ask.pricesLink}
+              </a>
+            </p>
             <PartnerCode />
           </div>
         </ViewTracker>
@@ -272,6 +278,13 @@ export default function Home() {
           </h2>
           <div className="mt-10">
             <Faq />
+          </div>
+          <div id="ask" className="mt-12 scroll-mt-24">
+            <h3 className="font-display text-3xl font-extrabold uppercase">{copy.ask.h3}</h3>
+            <p className="mt-2 text-lg text-ink/85">{copy.ask.sub}</p>
+            <div className="mt-6">
+              <AskForm />
+            </div>
           </div>
         </div>
       </section>
