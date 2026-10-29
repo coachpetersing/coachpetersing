@@ -47,10 +47,10 @@ export const copy = {
   },
   prices: {
     h2: "Work with me",
-    sub: "Book a single call today. The monthly plans are waitlist only for now.",
+    sub: "Three ways to do it. Pay up front, book right after.",
     once: "one time",
     perMonth: "/month",
-    fine: "Calls are one hour on video, and you get a one-pager from me after each one. Reschedule up to 24 hours before. Inside 24 hours, the call is used. When a monthly spot opens, I email the waitlist in the order people joined.",
+    fine: "Calls are one hour on video, and you get a one-pager from me after each one. Reschedule up to 24 hours before. Inside 24 hours, the call is used. Monthly calls don't roll over. Cancel a plan anytime from the link at the bottom of every page, and you keep your calls through the month you paid for.",
   },
   /** The form that opens on a waitlisted price card. */
   waitlist: {
