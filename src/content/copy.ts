@@ -133,6 +133,10 @@ export const copy = {
     // No session found
     plainH1: "Thanks.",
     plainSub: "If you just paid, check your email. Your receipt has everything you need.",
+    // A monthly plan button was clicked but checkout couldn't start
+    unavailableH1: "Checkout is down for a minute.",
+    unavailableSub: "Sorry about that. Email me at {email}, say you want {plan}, and I'll send you a payment link today. Or book a single call now and we'll set up the plan on it.",
+    unavailableCta: "Book a single call",
   },
   book: {
     h1: "Book a call",

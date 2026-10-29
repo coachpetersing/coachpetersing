@@ -12,6 +12,8 @@ export const site = {
   name: "Peter Sing",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://coachpetersing.com",
   email: "contact@coachpetersing.com",
+  /** Cal.com page where someone picks a time and pays for a single call in one step (Cal Pay). The Call button uses it whenever Stripe checkout isn't available. Keep its price in Cal.com the same as the Call price below. */
+  bookCallUrl: "https://cal.com/coachpetersing/60min",
   location: "Orange County, CA",
   instagramHandle: "@thesingfamily",
   social: [

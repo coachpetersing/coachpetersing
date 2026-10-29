@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { copy, fill } from "@/content/copy";
-import { products } from "@/content/site";
+import { products, site } from "@/content/site";
+import { isProductId } from "@/lib/stripe";
 import { pageMeta, descriptions } from "@/lib/seo";
 import { configured, sessionSummary } from "@/lib/stripe";
 import { env } from "@/lib/env";
@@ -19,10 +20,31 @@ async function lookup(id?: string) {
   }
 }
 
-export default async function WelcomePage({ searchParams }: { searchParams: Promise<{ session_id?: string }> }) {
+export default async function WelcomePage({ searchParams }: { searchParams: Promise<{ session_id?: string; unavailable?: string }> }) {
   const q = await searchParams;
-  const s = await lookup(q.session_id);
   const w = copy.welcome;
+
+  if (!q.session_id && isProductId(q.unavailable)) {
+    const plan = products[q.unavailable];
+    return (
+      <section className="grain section pt-10">
+        <div className="wrap max-w-[880px]">
+          <h1 className="h1">{w.unavailableH1}</h1>
+          <p className="mt-6 text-xl text-cream-50/90">{fill(w.unavailableSub, { email: site.email, plan: plan.longName })}</p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a href={site.bookCallUrl} className="btn-primary">
+              {w.unavailableCta}
+            </a>
+            <a href={`mailto:${site.email}?subject=${encodeURIComponent(plan.longName)}`} className="btn-secondary">
+              {site.email}
+            </a>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const s = await lookup(q.session_id);
 
   if (!s || !s.product || !s.paid) {
     return (

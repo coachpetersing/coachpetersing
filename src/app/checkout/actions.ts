@@ -2,20 +2,29 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { products, site } from "@/content/site";
+import { site } from "@/content/site";
 import { findPartner, isValidCode } from "@/content/partners";
 import { configured, createCheckout, isProductId } from "@/lib/stripe";
 import { currentPartner, REF_COOKIE, REF_MAX_AGE } from "@/lib/ref";
 
 /**
+ * Where a buy button goes when Stripe checkout can't run (no key yet, or Stripe errored). A Call goes
+ * straight to the Cal.com page where they pick a time and pay in one step. A monthly plan goes to a
+ * page that says checkout is down and offers a single call instead. Never a mailto link: on most
+ * computers that does nothing visible, which looks like a broken button.
+ */
+function fallback(product: string) {
+  return product === "call" ? site.bookCallUrl : `/welcome?unavailable=${product}`;
+}
+
+/**
  * Starts Stripe Checkout for one product and sends the browser there. The partner code (if the
  * visitor entered one or came through a partner's link) goes along for attribution and the
- * first-payment discount. With no Stripe key set, it falls back to an email so the buttons still do something.
+ * first-payment discount.
  */
 export async function startCheckout(product: string) {
   if (!isProductId(product)) redirect("/#prices");
-  const p = products[product];
-  if (!configured()) redirect(`mailto:${site.email}?subject=${encodeURIComponent(`${p.name} ($${p.price})`)}`);
+  if (!configured()) redirect(fallback(product));
 
   const partner = await currentPartner();
   let url: string;
@@ -23,7 +32,7 @@ export async function startCheckout(product: string) {
     url = await createCheckout(product, partner?.code ?? null);
   } catch (err) {
     console.error("[checkout] failed:", (err as Error).message);
-    redirect(`mailto:${site.email}?subject=${encodeURIComponent(`${p.name} ($${p.price}) checkout failed`)}`);
+    redirect(fallback(product));
   }
   redirect(url);
 }
