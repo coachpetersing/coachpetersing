@@ -7,6 +7,7 @@ import StatCounter from "@/components/StatCounter";
 import Faq from "@/components/Faq";
 import CaseStudyCard from "@/components/CaseStudyCard";
 import BuyButton from "@/components/BuyButton";
+import Waitlist from "@/components/Waitlist";
 import PartnerNote from "@/components/PartnerNote";
 import PartnerCode from "@/components/PartnerCode";
 import ViewTracker from "@/components/ViewTracker";
@@ -109,7 +110,7 @@ export default function Home() {
                       <span className="font-display text-[56px] font-extrabold leading-none">{money(p.price)}</span>
                       <span className="text-base text-ink/80">{p.per === "month" ? copy.prices.perMonth : copy.prices.once}</span>
                     </p>
-                    <PartnerNote product={id} />
+                    {!p.waitlist && <PartnerNote product={id} />}
                     <ul className="mt-6 space-y-3">
                       {p.lines.map((f) => (
                         <li key={f} className="flex gap-3">
@@ -121,10 +122,14 @@ export default function Home() {
                       ))}
                     </ul>
                     <div className="mt-auto pt-8">
-                      <BuyButton product={id} location={`price_${id}`} className="btn-dark w-full">
-                        {p.cta}
-                        <span className="sr-only">: {p.name}</span>
-                      </BuyButton>
+                      {p.waitlist ? (
+                        <Waitlist product={id} />
+                      ) : (
+                        <BuyButton product={id} location={`price_${id}`} className="btn-dark w-full">
+                          {p.cta}
+                          <span className="sr-only">: {p.name}</span>
+                        </BuyButton>
+                      )}
                     </div>
                   </article>
                 );

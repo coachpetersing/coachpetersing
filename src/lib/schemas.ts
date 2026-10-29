@@ -9,6 +9,11 @@ export const partnerSchema = z.object({
   who: z.string().trim().min(1, "Tell me who you'd send.").max(1500),
 });
 
+export const waitlistSchema = z.object({
+  email,
+  message: z.string().trim().min(1, "Tell me a little about what you want help with.").max(2000),
+});
+
 export type FieldErrors = Record<string, string>;
 
 export type FormState = {

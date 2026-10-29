@@ -32,6 +32,16 @@ export const emails = {
     subject: "Your plan is canceled",
     body: ["Done. You keep your calls through {date} and won't be charged again.", "Want back in later? The prices are on the site."],
   },
+  /** Copy of a waitlist sign-up, sent to the person who joined. */
+  waitlistCopy: {
+    subject: "You're on the {plan} waitlist",
+    body: [
+      "Thanks for joining the waitlist for {plan}. I'll email you when a spot opens.",
+      "Here's what you sent:",
+      "{message}",
+      "Want to start sooner? You can book a single call anytime: {callUrl}",
+    ],
+  },
   /** Footer line on plan emails so billing is always one click away. */
   billingLine: "Manage or cancel your plan: {url}",
 
@@ -43,6 +53,7 @@ export const emails = {
     refund: "Refund: {product} ${amount} to {email}{ref}",
     returning: " RETURNING CUSTOMER USED A CODE",
     partnerApply: "Partner application: {name}",
+    waitlist: "Waitlist: {plan} from {email}",
     cancelScheduled: "Cancel scheduled: {email}, {product}",
     planEnded: "Plan ended: {email}, {product}",
     paymentFailed: "Payment failed: {email}",

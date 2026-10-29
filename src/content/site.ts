@@ -38,6 +38,8 @@ export type Product = {
   per: "once" | "month";
   /** Calls included per month. */
   callsPerMonth: number;
+  /** True while this tier isn't for sale: the card shows a waitlist form instead of a buy button. */
+  waitlist?: boolean;
   /** Shown on the price card, one line each. */
   lines: string[];
   /** Button label. */
@@ -74,7 +76,8 @@ export const products: Record<ProductId, Product> = {
     per: "month",
     callsPerMonth: 2,
     lines: ["Two hours a month, one on one.", "Keep the same two slots every month if you like.", "A one-pager after every call."],
-    cta: "Start",
+    cta: "Join the waitlist",
+    waitlist: true,
     lookupKey: "two_calls_monthly_499",
     referralOff: 100,
     payout: { kind: "share", rate: 0.15 },
@@ -88,7 +91,8 @@ export const products: Record<ProductId, Product> = {
     per: "month",
     callsPerMonth: 4,
     lines: ["An hour a week, one on one.", "Best if you post every week and want someone in it with you.", "A one-pager after every call."],
-    cta: "Start",
+    cta: "Join the waitlist",
+    waitlist: true,
     lookupKey: "four_calls_monthly_899",
     referralOff: 200,
     payout: { kind: "share", rate: 0.15 },

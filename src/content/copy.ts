@@ -47,10 +47,22 @@ export const copy = {
   },
   prices: {
     h2: "Work with me",
-    sub: "Three ways to do it. Pay up front, book right after.",
+    sub: "Book a single call today. The monthly plans are waitlist only for now.",
     once: "one time",
     perMonth: "/month",
-    fine: "Calls are one hour on video, and you get a one-pager from me after each one. Reschedule up to 24 hours before. Inside 24 hours, the call is used. Monthly calls don't roll over. Cancel a plan anytime from the link at the bottom of every page, and you keep your calls through the month you paid for.",
+    fine: "Calls are one hour on video, and you get a one-pager from me after each one. Reschedule up to 24 hours before. Inside 24 hours, the call is used. When a monthly spot opens, I email the waitlist in the order people joined.",
+  },
+  /** The form that opens on a waitlisted price card. */
+  waitlist: {
+    email: "Email",
+    message: "What do you want help with?",
+    messageHint: "Your page, your goals, where you're stuck. A few sentences is plenty.",
+    submit: "Join the waitlist",
+    sending: "Sending",
+    cancel: "Cancel",
+    done: "You're on the {plan} waitlist. I'll email you when a spot opens.",
+    doneCopy: "A copy of what you sent is in your inbox.",
+    failed: "Something broke on my end and it didn't go through. Email contact@coachpetersing.com instead and I'll add you.",
   },
   how: {
     h2: "How it works",
